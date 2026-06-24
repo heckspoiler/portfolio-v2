@@ -1,28 +1,27 @@
-import { Fragment, useState } from 'react'
-import { PROJECTS, type Project } from '../../data/projects'
-import { GithubIcon } from '../../components/ui/GithubIcon'
-import { useInView } from '../../hooks/useInView'
-import styles from './Projects.module.css'
+import { Fragment, useState } from 'react';
+import { PROJECTS, type Project } from '../../data/projects';
+import { GithubIcon } from '../../components/ui/GithubIcon';
+import { useInView } from '../../hooks/useInView';
+import styles from './Projects.module.css';
 
-const IMG_BASE = '/assets/images/projects/testimages'
-const VIDEO_BASE = '/assets/images/projects/testvideos'
+const PLACEHOLDER = '/assets/images/projects/projects-placeholder.png';
 
 export function Projects() {
-  const [selected, setSelected] = useState<Project | null>(null)
-  const [watched, setWatched] = useState<Set<string>>(new Set())
-  const [fieldVisible, setFieldVisible] = useState(false) // description field opacity
-  const [fieldInView, setFieldInView] = useState(false) // arrow toggles slide-in
-  const [showVideo, setShowVideo] = useState(false)
+  const [selected, setSelected] = useState<Project | null>(null);
+  const [watched, setWatched] = useState<Set<string>>(new Set());
+  const [fieldVisible, setFieldVisible] = useState(false); // description field opacity
+  const [fieldInView, setFieldInView] = useState(false); // arrow toggles slide-in
+  const [showVideo, setShowVideo] = useState(false);
 
   // Staggered entrance reveal, triggered when the section scrolls into view.
-  const [sectionRef, loaded] = useInView<HTMLElement>({ threshold: 0.5 })
+  const [sectionRef, loaded] = useInView<HTMLElement>({ threshold: 0.5 });
 
   const selectProject = (project: Project) => {
-    setSelected(project)
-    setWatched((prev) => new Set(prev).add(project.slug))
-    setShowVideo(false)
-    if (!fieldVisible) setFieldVisible(true)
-  }
+    setSelected(project);
+    setWatched((prev) => new Set(prev).add(project.slug));
+    setShowVideo(false);
+    if (!fieldVisible) setFieldVisible(true);
+  };
 
   return (
     <section
@@ -62,33 +61,37 @@ export function Projects() {
         <section className={`${styles.subsection} ${styles.subsectionLeft}`}>
           <ul className={styles.list}>
             {PROJECTS.map((project, index) => {
-              const isActive = selected?.slug === project.slug
-              const isWatched = watched.has(project.slug)
+              const isActive = selected?.slug === project.slug;
+              const isWatched = watched.has(project.slug);
               return (
-                <li
-                  key={project.slug}
-                  className={`${styles.listObject} ${
-                    loaded ? styles.listObjectLoaded : ''
-                  }`}
-                  style={{ transitionDelay: `${index * 100}ms` }}
-                >
-                  <a
-                    href="#projects"
-                    className={`${isActive ? styles.linkActive : ''} ${
-                      isWatched ? styles.watched : ''
+                <li key={project.slug} className={styles.listObject}>
+                  <div
+                    className={`${styles.reveal} ${
+                      loaded ? styles.revealIn : ''
                     }`}
-                    onClick={(e) => {
-                      e.preventDefault()
-                      selectProject(project)
-                    }}
+                    style={{ transitionDelay: `${200 + index * 100}ms` }}
                   >
-                    <span className={styles.listObjectSpan}>
-                      {String(index + 1).padStart(2, '0')}{' '}
-                    </span>
-                    {project.name}
-                  </a>
+                    <div className={styles.arrow}>
+                      <img src="/assets/svgs/projects/arrow-before.svg" />
+                    </div>
+                    <a
+                      href="#projects"
+                      className={`${styles.projectlink} ${isActive ? styles.linkActive : ''} ${
+                        isWatched ? styles.watched : ''
+                      }`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        selectProject(project);
+                      }}
+                    >
+                      <span className={styles.listObjectSpan}>
+                        {String(index + 1).padStart(2, '0')}{' '}
+                      </span>
+                      {project.name}
+                    </a>
+                  </div>
                 </li>
-              )
+              );
             })}
           </ul>
         </section>
@@ -111,14 +114,17 @@ export function Projects() {
               {selected && (
                 <img
                   className={styles.projectImage}
-                  src={`${IMG_BASE}/${selected.slug}.png`}
+                  src={selected.image}
                   alt={`Image of project ${selected.name}`}
+                  onError={(e) => {
+                    e.currentTarget.src = PLACEHOLDER;
+                  }}
                 />
               )}
               {selected && showVideo && (
                 <video
                   className={styles.projectVideo}
-                  src={`${VIDEO_BASE}/${selected.slug}.mp4`}
+                  src={selected.video}
                   preload="metadata"
                   autoPlay
                   loop
@@ -152,5 +158,5 @@ export function Projects() {
         </section>
       </section>
     </section>
-  )
+  );
 }

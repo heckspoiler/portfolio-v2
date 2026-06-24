@@ -5,10 +5,10 @@ import styles from './Landing.module.css'
 export function Landing() {
   const sectionRef = useTextWaterfall<HTMLElement>(0.2)
   const tiltRef = useTilt<HTMLDivElement>({
-    max: 500,
-    speed: 100,
-    scale: 2,
-    perspective: 500,
+    max: 15,
+    speed: 400,
+    scale: 1.05,
+    perspective: 1000,
   })
 
   return (

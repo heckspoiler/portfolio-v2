@@ -3,8 +3,12 @@
 // `technologies` string; here those are split into structured fields.
 
 export interface Project {
-  /** Slug used for image/video filenames and as the selection key (was `alt`). */
+  /** Selection key (was `alt`). */
   slug: string
+  /** Preview image path (placeholder when no real screenshot exists). */
+  image: string
+  /** Preview video path, shown on hover. */
+  video: string
   /** Display name (was `projectName`). */
   name: string
   /** One-liner shown in the preview footnotes (was `description`). */
@@ -22,6 +26,8 @@ export interface Project {
 export const PROJECTS: Project[] = [
   {
     slug: 'sinecloud',
+    image: '/assets/images/projects/testimages/sinecloud.png',
+    video: '/assets/images/projects/testvideos/sinecloud.mp4',
     name: 'sinecloud',
     shortDescription: 'Soundcloud clone with my favorite radio stations',
     longDescription:
@@ -32,6 +38,9 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'station',
+    // no dedicated screenshot exists for station — fall back to the placeholder
+    image: '/assets/images/projects/projects-placeholder.png',
+    video: '/assets/images/projects/testvideos/station.mp4',
     name: 'station daw',
     shortDescription: 'Landing page for a DAW',
     longDescription:
@@ -42,6 +51,8 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'spaceclub',
+    image: '/assets/images/projects/testimages/spaceclub.png',
+    video: '/assets/images/projects/testvideos/spaceclub.mp4',
     name: 'space club',
     shortDescription: 'A homepage for an imaginary space travel company',
     longDescription:
@@ -52,6 +63,8 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'chewstreet',
+    image: '/assets/images/projects/testimages/chewstreet.png',
+    video: '/assets/images/projects/testvideos/chewstreet.mp4',
     name: 'chewstreet',
     shortDescription: 'A SaaS for Webdev Everything',
     longDescription:

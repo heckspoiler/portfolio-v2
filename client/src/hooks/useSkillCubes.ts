@@ -61,9 +61,11 @@ export function useSkillCubes(
       }
       cubesBySkill.current[id] = cubes
 
-      const bottom = section.getBoundingClientRect().bottom
+      // Land the cubes in the lower portion of the section (visible), rather
+      // than dropping them off the bottom edge.
+      const restY = section.getBoundingClientRect().bottom - 120
       cubes.forEach((cube) => {
-        const fall = bottom + 100 - cube.getBoundingClientRect().top
+        const fall = restY - cube.getBoundingClientRect().top
         gsap.to(cube, { duration: 2, y: fall, ease: 'bounce.out' })
       })
     }

@@ -56,34 +56,8 @@
   font-size: 0.8rem;
 }
 
-.arrowContainer {
-  position: absolute;
-  height: 5rem;
-  width: 2.5rem;
-  background-color: #29ffb4;
-  left: 40px;
-  top: 0;
-  margin-left: -40px;
-  border: 1px solid black;
-  border-right: none;
-  z-index: 4;
-  transition: background-color 0.4s ease-in-out;
-}
 
-.arrow {
-  margin-top: 30px;
-  margin-left: 15px;
-  height: 17px;
-  width: 17px;
-  border-right: 3px solid black;
-  border-top: 3px solid black;
-  transform: rotate(-135deg);
-  transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
 
-.arrowRotated {
-  transform: rotate(45deg);
-}
 
 /* ---- main two-column container ---- */
 .container {
@@ -120,15 +94,23 @@
   margin-top: 20px;
   margin-left: 20px;
   border-bottom: 1px solid black;
-  transform: scale(0.7) rotate(25deg);
   width: 100%;
-  opacity: 0;
-  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
-    opacity 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+  /* clip mask: the content rises up from behind the bottom edge */
+  overflow: hidden;
 }
 
-.listObjectLoaded {
-  transform: scale(1) rotate(0);
+/* inner wrapper that slides up out of the .listObject mask */
+.reveal {
+  position: relative;
+  display: block;
+  transform: translateY(110%);
+  opacity: 0;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1),
+    opacity 0.4s ease-in-out;
+}
+
+.revealIn {
+  transform: translateY(0);
   opacity: 1;
 }
 
@@ -140,32 +122,32 @@
   font-style: italic;
 }
 
-.list li a {
+.projectlink {
+  z-index: 1;
   position: relative;
+  display: inline-block;
   -webkit-text-stroke: 1px black;
+  background-color: #FFEA29;
   color: transparent;
   text-transform: uppercase;
   text-align: center;
-  transition: color 0.3s ease-in-out, margin-left 0.3s ease-in-out;
+  transform: translateX(0%);
+  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
-.list li a::before {
+
+
+.arrow {
+  z-index: -1;
   position: absolute;
-  content: url('/assets/svgs/projects/arrow-before.svg');
-  scale: 0.8;
-  margin-left: -15vw;
-  margin-top: -14px;
-  transition: margin-left 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: translateY(-12px) scale(0.4);
 }
 
 .linkActive {
   color: black;
-  margin-left: 7vw;
+  transform: translateX(20%);
 }
 
-.linkActive::before {
-  margin-left: -5vw;
-}
 
 .watched::after {
   visibility: visible;

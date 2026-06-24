@@ -1,13 +1,13 @@
-import { useEffect, useRef, useState } from 'react'
-import { useInView } from '../../hooks/useInView'
-import { useSkillCubes } from '../../hooks/useSkillCubes'
-import styles from './Skills.module.css'
+import { useEffect, useRef, useState } from 'react';
+import { useInView } from '../../hooks/useInView';
+import { useSkillCubes } from '../../hooks/useSkillCubes';
+import styles from './Skills.module.css';
 
-const LOGO = '/assets/icons/skills/skills-logos'
+const LOGO = '/assets/icons/skills/skills-logos';
 
 // Skill bars. `data-skill-bar` matches the keys in SKILL_LEVELS (cube targets).
-const DESIGN_SKILLS = ['illustrator', 'photoshop', 'indesign', 'figma']
-const TECH_SKILLS = ['html', 'css', 'tailwind', 'javascript', 'react']
+const DESIGN_SKILLS = ['illustrator', 'photoshop', 'indesign', 'figma'];
+const TECH_SKILLS = ['html', 'css', 'tailwind', 'javascript', 'react'];
 
 function SkillPair({ id, loaded }: { id: string; loaded: boolean }) {
   return (
@@ -23,26 +23,26 @@ function SkillPair({ id, loaded }: { id: string; loaded: boolean }) {
       />
       <div className={styles.levelContainer} data-skill-bar={id} />
     </div>
-  )
+  );
 }
 
 export function Skills() {
   // Entrance reveal, triggered when the section scrolls into view.
-  const [sectionRef, loaded] = useInView<HTMLElement>({ threshold: 0.5 })
+  const [sectionRef, loaded] = useInView<HTMLElement>({ threshold: 0.5 });
 
   // Falling-cube animation + the "press A/B" guidance field.
-  const [arranged, setArranged] = useState(false)
-  const [helpVisible, setHelpVisible] = useState(false)
-  const [helpText, setHelpText] = useState('well, that sucks :(')
-  const helpStarted = useRef(false)
+  const [arranged, setArranged] = useState(false);
+  const [helpVisible, setHelpVisible] = useState(false);
+  const [helpText, setHelpText] = useState('well, that sucks :(');
+  const helpStarted = useRef(false);
 
-  useSkillCubes(sectionRef, styles.cubeTest, loaded, arranged)
+  useSkillCubes(sectionRef, styles.cubeTest, loaded, arranged);
 
   // Guidance text automation (ported from actionTextField.js): a few seconds
   // after the cubes drop, reveal the field and nudge toward the A/B buttons.
   useEffect(() => {
-    if (!loaded || helpStarted.current) return
-    helpStarted.current = true
+    if (!loaded || helpStarted.current) return;
+    helpStarted.current = true;
     const timers = [
       setTimeout(() => setHelpVisible(true), 5000),
       setTimeout(() => setHelpText('I think this could be solved...'), 8000),
@@ -50,15 +50,15 @@ export function Skills() {
         () => setHelpText('by clicking A or B on the carlo boy™!'),
         10500,
       ),
-    ]
-    return () => timers.forEach(clearTimeout)
-  }, [loaded])
+    ];
+    return () => timers.forEach(clearTimeout);
+  }, [loaded]);
 
   const handleArrange = () => {
-    setArranged(true)
-    setHelpText('Thanks for helping out!')
-    setTimeout(() => setHelpVisible(false), 2500)
-  }
+    setArranged(true);
+    setHelpText('Thanks for helping out!');
+    setTimeout(() => setHelpVisible(false), 2500);
+  };
 
   return (
     <section
@@ -96,8 +96,12 @@ export function Skills() {
             <div className={styles.buttonsCross} />
           </div>
           <div className={styles.buttonsStartSelect}>
-            <div className={`${styles.buttonStart} ${styles.buttonStartSelect}`} />
-            <div className={`${styles.buttonSelect} ${styles.buttonStartSelect}`} />
+            <div
+              className={`${styles.buttonStart} ${styles.buttonStartSelect}`}
+            />
+            <div
+              className={`${styles.buttonSelect} ${styles.buttonStartSelect}`}
+            />
           </div>
           <div className={styles.buttonsAb}>
             <button
@@ -134,11 +138,6 @@ export function Skills() {
 
       <section className={styles.containerMain}>
         <section className={styles.subcontainer}>
-          <h3
-            className={`${styles.subtitle} ${loaded ? styles.subtitlesLoaded : ''}`}
-          >
-            design
-          </h3>
           {DESIGN_SKILLS.map((id) => (
             <SkillPair key={id} id={id} loaded={loaded} />
           ))}
@@ -148,15 +147,8 @@ export function Skills() {
           {TECH_SKILLS.map((id) => (
             <SkillPair key={id} id={id} loaded={loaded} />
           ))}
-          <h3
-            className={`${styles.subtitle} ${styles.programming} ${
-              loaded ? styles.subtitlesLoaded : ''
-            }`}
-          >
-            tech stacks
-          </h3>
         </section>
       </section>
     </section>
-  )
+  );
 }
