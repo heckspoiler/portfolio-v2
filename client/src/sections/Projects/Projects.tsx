@@ -1,6 +1,7 @@
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { Fragment, useState } from 'react'
 import { PROJECTS, type Project } from '../../data/projects'
 import { GithubIcon } from '../../components/ui/GithubIcon'
+import { useInView } from '../../hooks/useInView'
 import styles from './Projects.module.css'
 
 const IMG_BASE = '/assets/images/projects/testimages'
@@ -12,15 +13,9 @@ export function Projects() {
   const [fieldVisible, setFieldVisible] = useState(false) // description field opacity
   const [fieldInView, setFieldInView] = useState(false) // arrow toggles slide-in
   const [showVideo, setShowVideo] = useState(false)
-  const [loaded, setLoaded] = useState(false) // entrance reveal (Phase 4 wires to scroll)
 
-  const sectionRef = useRef<HTMLElement>(null)
-
-  // Reveal once mounted; Phase 4 will re-trigger this on scroll into view.
-  useEffect(() => {
-    const id = setTimeout(() => setLoaded(true), 100)
-    return () => clearTimeout(id)
-  }, [])
+  // Staggered entrance reveal, triggered when the section scrolls into view.
+  const [sectionRef, loaded] = useInView<HTMLElement>({ threshold: 0.5 })
 
   const selectProject = (project: Project) => {
     setSelected(project)

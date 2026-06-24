@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { askCharlybot, sendContactForm } from '../../lib/api'
 import { GithubIcon } from '../../components/ui/GithubIcon'
 import { CharlybotIcon, CharlybotLogo } from '../../components/ui/CharlybotIcon'
+import { useInView } from '../../hooks/useInView'
 import styles from './Contact.module.css'
 
 interface ChatMessage {
@@ -25,7 +26,8 @@ function chatPlaceholder(sent: number): string {
 }
 
 export function Contact() {
-  const [loaded, setLoaded] = useState(false)
+  // Entrance reveal, triggered when the section scrolls into view.
+  const [sectionRef, loaded] = useInView<HTMLElement>({ threshold: 0.8 })
 
   // Reveal/close state for the two panels (ported from mainButtons.js).
   const [chatOpen, setChatOpen] = useState(false)
@@ -47,11 +49,6 @@ export function Contact() {
     message: '',
     checkbox: false,
   })
-
-  useEffect(() => {
-    const t = setTimeout(() => setLoaded(true), 100)
-    return () => clearTimeout(t)
-  }, [])
 
   // Keep the chat scrolled to the latest message.
   useEffect(() => {
@@ -111,7 +108,12 @@ export function Contact() {
   const revealed = loaded ? styles.contactVisible : ''
 
   return (
-    <section id="contact" data-section-id="contact" className={styles.section}>
+    <section
+      id="contact"
+      data-section-id="contact"
+      className={styles.section}
+      ref={sectionRef}
+    >
       <h2 className={`${styles.title} ${loaded ? styles.titleLoaded : ''}`}>
         Contact
       </h2>

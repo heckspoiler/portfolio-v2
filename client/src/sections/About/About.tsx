@@ -1,13 +1,20 @@
 import { useState } from 'react'
+import { useTextWaterfall } from '../../hooks/useTextWaterfall'
 import styles from './About.module.css'
 
 const SVG = '/assets/svgs/about'
 
 export function About() {
   const [laptopVisible, setLaptopVisible] = useState(false)
+  const sectionRef = useTextWaterfall<HTMLElement>(0.2)
 
   return (
-    <section id="about" data-section-id="about" className={styles.section}>
+    <section
+      id="about"
+      data-section-id="about"
+      className={styles.section}
+      ref={sectionRef}
+    >
       <div className={styles.upper}>
         <h2>Hi!</h2>
         <img className={styles.waves} src={`${SVG}/waves.svg`} alt="" />

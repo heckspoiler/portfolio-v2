@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useInView } from '../../hooks/useInView'
 import styles from './Skills.module.css'
 
 const LOGO = '/assets/icons/skills/skills-logos'
@@ -26,16 +26,16 @@ function SkillPair({ id, loaded }: { id: string; loaded: boolean }) {
 }
 
 export function Skills() {
-  const [loaded, setLoaded] = useState(false)
-
-  // Entrance reveal; Phase 4 will re-trigger this on scroll + run the cubes.
-  useEffect(() => {
-    const t = setTimeout(() => setLoaded(true), 100)
-    return () => clearTimeout(t)
-  }, [])
+  // Entrance reveal, triggered when the section scrolls into view.
+  const [sectionRef, loaded] = useInView<HTMLElement>({ threshold: 0.5 })
 
   return (
-    <section id="skills" data-section-id="skills" className={styles.section}>
+    <section
+      id="skills"
+      data-section-id="skills"
+      className={styles.section}
+      ref={sectionRef}
+    >
       <section className={styles.clickMeField}>
         <p>well, that sucks :(</p>
       </section>
