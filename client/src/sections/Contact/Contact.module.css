@@ -67,12 +67,6 @@
   height: calc(20rem + 20vw);
 }
 
-.contactVisible {
-  opacity: 1;
-  margin-left: 0;
-  transform: rotate(0deg);
-}
-
 .mainButton:hover {
   background-color: #faf126;
   color: #f46265;
@@ -495,6 +489,8 @@
   scale: 0.4;
   width: 101px;
   height: 104px;
+  /* GithubIcon paints with currentColor; the footer marks are yellow. */
+  color: #faf126;
 }
 
 .footerH3 {
@@ -503,11 +499,17 @@
   padding-left: 14px;
 }
 
-/* Reveal state for both the form and the chatbot panels. Defined last so it
-   overrides the hidden defaults of .form and .chatbotContainer regardless of
-   their source order. */
+/* Reveal states are defined last so they override the hidden defaults of
+   .form / .chatbotContainer / .mainButton / .footerLink regardless of source
+   order (these classes otherwise come later and would win on opacity). */
 .panelVisible {
   transform: translate(-50%, -50%);
   opacity: 1;
   visibility: visible;
+}
+
+.contactVisible {
+  opacity: 1;
+  margin-left: 0;
+  transform: rotate(0deg);
 }
