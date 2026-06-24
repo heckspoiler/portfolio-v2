@@ -1,0 +1,21 @@
+/* Local font faces. Fonts live in /public/assets/fonts and are served at /assets/fonts/... */
+
+@font-face {
+  font-family: "Nohemi Medium";
+  src: url("/assets/fonts/nohemi/Nohemi-Medium.woff2") format("woff2"),
+    url("/assets/fonts/nohemi/Nohemi-Medium.woff") format("woff");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Nohemi Regular";
+  src: url("/assets/fonts/nohemi/Nohemi-Regular.woff2") format("woff2"),
+    url("/assets/fonts/nohemi/Nohemi-Regular.woff") format("woff");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Nohemi Semibold";
+  src: url("/assets/fonts/nohemi/Nohemi-SemiBold.woff2") format("woff2");
+  font-display: swap;
+}

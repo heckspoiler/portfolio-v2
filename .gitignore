@@ -1,0 +1,13 @@
+# dependencies
+node_modules/
+
+# env & secrets
+.env
+prompt.js
+
+# build output
+dist/
+
+# misc
+.DS_Store
+Thumbs.db

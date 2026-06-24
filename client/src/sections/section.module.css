@@ -1,0 +1,14 @@
+/* Base styling shared by every full-height snap section, matching the legacy
+   `.main-section` rule exactly. Section modules extend this via
+   `composes: base from '../section.module.css'`.
+   NOTE: deliberately no `display`/centering here — the original sections flow
+   from the top-left and position their children with explicit offsets. */
+.base {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

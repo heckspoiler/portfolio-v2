@@ -1,0 +1,14 @@
+/* Scroll-snap container, ported from #fullPage (the site never actually used
+   the fullPage.js library — it relied on native CSS scroll-snapping). */
+.scrollContainer {
+  height: 100vh;
+  width: 100%;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollContainer::-webkit-scrollbar {
+  display: none;
+}

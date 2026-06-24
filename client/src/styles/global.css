@@ -1,0 +1,71 @@
+/* Global design tokens + base element styles.
+   Section/component-specific rules live in co-located *.module.css files. */
+
+:root {
+  /* Background colors used per section (ported from backgroundColor.js) */
+  --bg-landing: #8eb4fd;
+  --color-accent: rgb(66, 218, 135);
+  --color-cursor-hover: rgb(136, 136, 220);
+  --color-text: #000;
+
+  --font-medium: "Nohemi Medium", Arial, sans-serif;
+  --font-regular: "Nohemi Regular", Arial, sans-serif;
+  --font-semibold: "Nohemi Semibold", Arial, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background-color: var(--bg-landing);
+  transition: background-color 0.3s ease-in-out;
+  color: var(--color-text);
+  /* custom cursor is rendered by the Cursor component */
+  cursor: none;
+}
+
+img {
+  border: none;
+  outline: none;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover,
+button:hover,
+svg:hover,
+input:hover,
+textarea:hover {
+  cursor: none;
+}
+
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+  font-family: var(--font-semibold);
+  font-size: calc(100px + 5vw);
+  letter-spacing: 2px;
+}
+
+h3 {
+  font-family: Arial, sans-serif;
+  font-size: calc(0.6rem + 2vw);
+}

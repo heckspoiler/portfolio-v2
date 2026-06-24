@@ -1,0 +1,30 @@
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  z-index: 1000;
+  pointer-events: none;
+  transition: width 0.3s ease-in-out, height 0.3s ease-in-out,
+    border-radius 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.default {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+}
+
+.grow {
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+}
+
+.text {
+  width: 2px;
+  height: 22px;
+  border-radius: 0;
+}

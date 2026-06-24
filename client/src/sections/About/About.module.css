@@ -1,0 +1,119 @@
+.section {
+  composes: base from '../section.module.css';
+  padding: 0 4rem 2rem 4rem;
+}
+
+.upper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: calc(0.5rem + 5vw);
+}
+
+.waves {
+  width: 324px;
+  max-width: 40vw;
+}
+
+.outlines {
+  font-family: var(--font-semibold);
+  -webkit-text-stroke: 1px black;
+  color: transparent;
+}
+
+.mid {
+  display: flex;
+  gap: 4rem;
+  margin-left: 4rem;
+  flex-wrap: wrap;
+}
+
+.carloContainer {
+  display: flex;
+}
+
+.carloBlack {
+  margin-top: 5px;
+}
+
+.carloGreen {
+  font-family: var(--font-semibold);
+  -webkit-text-stroke: 1px black;
+  color: #8efda0;
+  position: absolute;
+  margin-left: 5px;
+}
+
+.belowBlock {
+  border: 1px solid black;
+  border-radius: 40px;
+  height: 2rem;
+  width: calc(25rem + 10vw);
+  margin-left: calc(17rem + 5vw);
+  margin-top: -2rem;
+  background-color: #a4ffde;
+}
+
+.arrow {
+  margin-left: calc(15rem + 25vw);
+  scale: 0.6;
+  margin-top: -1rem;
+}
+
+.description {
+  margin-left: calc(4rem + 5vw);
+  font-family: var(--font-semibold);
+}
+
+.descriptionOutlines {
+  color: transparent;
+  -webkit-text-stroke: 1px black;
+}
+
+.laptop {
+  visibility: hidden;
+  position: absolute;
+  margin-left: 15vw;
+  left: 0;
+  top: 0;
+  margin-top: calc(8rem + 14vw);
+}
+
+.laptopActive {
+  visibility: visible;
+}
+
+.design {
+  position: relative;
+  height: 12rem;
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: calc(18rem + 45vw);
+  margin-top: calc(-1 * (2rem + 15vw));
+}
+
+.wavyLine {
+  z-index: -2;
+  scale: 0.7;
+}
+
+.smallText {
+  font-family: Arial, sans-serif;
+}
+
+.emphasize {
+  font-family: var(--font-semibold);
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-thickness: 2px;
+  color: black;
+  transition: color 0.2s ease-in-out, text-decoration-style 0.3s ease-in-out;
+}
+
+.emphasize:hover {
+  color: #f46265;
+  text-decoration-style: dashed;
+}

@@ -1,0 +1,76 @@
+.section {
+  composes: base from '../section.module.css';
+  background-color: #ffffff;
+  transition: background-color 1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+.inner {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+.clickMe {
+  margin-top: calc(6rem + 10vw);
+  margin-left: 10rem;
+  width: 50rem;
+  border: 3px solid black;
+  padding: 30px;
+  transition: border 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.clickMe h2 {
+  color: black;
+  font-family: var(--font-semibold);
+  text-shadow: 0px 0px 0px white;
+  font-size: 6rem;
+  transition: color 1s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+    text-shadow 1s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+    font-size 1s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+    scale 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.magnetBlock {
+  height: calc(0.2rem + 0.8vw);
+  border: 2px solid black;
+  box-shadow: 2px 2px 1px black;
+  width: 150vw;
+  background-color: #faf126;
+  position: absolute;
+  top: calc(20rem + 20vh);
+  left: 100vw;
+}
+
+.animationText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: -64vw;
+  top: calc(20rem + 20vh);
+  text-shadow: 2px 2px 1px black;
+  font-size: 0rem;
+  rotate: 24deg;
+  height: 4rem;
+  width: 100vw;
+  font-family: var(--font-semibold);
+}
+
+.button {
+  font-family: var(--font-medium);
+  position: absolute;
+  font-size: calc(1rem + 4vw);
+  padding: calc(0.3rem + 3vw);
+  outline: none;
+  border: 3px solid transparent;
+  box-shadow: 0px 0px 0px transparent;
+  left: 10rem;
+  background-color: transparent;
+  color: transparent;
+  display: none;
+  z-index: 10;
+}
+
+.button:hover {
+  background-color: #f46265;
+}

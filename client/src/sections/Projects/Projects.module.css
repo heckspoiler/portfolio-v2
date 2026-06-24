@@ -1,0 +1,285 @@
+.section {
+  composes: base from '../section.module.css';
+}
+
+.title {
+  font-family: var(--font-semibold);
+  font-size: calc(2rem + 6vw);
+  margin-top: 10px;
+  color: black;
+  margin-left: -10vw;
+  opacity: 0;
+  transition: margin-left 0.5s cubic-bezier(0.165, 0.84, 0.44, 1),
+    opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.titleLoaded {
+  margin-left: 1vw;
+  opacity: 1;
+}
+
+/* ---- sliding description field ---- */
+.descriptionField {
+  position: absolute;
+  height: 30rem;
+  width: 25rem;
+  top: 25.9vh;
+  left: 100vw;
+  z-index: 3;
+  border: 1px solid black;
+  background-color: #29ffb4;
+  box-shadow: 5px 5px 1px black;
+  padding: 40px;
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out, left 0.4s ease-in-out;
+}
+
+.fieldVisible {
+  opacity: 1;
+}
+
+.fieldInView {
+  left: 76vw;
+}
+
+.descriptionField h3 {
+  border-bottom: 1px solid black;
+  text-align: center;
+  width: auto;
+}
+
+.descriptionField p {
+  margin-top: 40px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 0.8rem;
+}
+
+.arrowContainer {
+  position: absolute;
+  height: 5rem;
+  width: 2.5rem;
+  background-color: #29ffb4;
+  left: 40px;
+  top: 0;
+  margin-left: -40px;
+  border: 1px solid black;
+  border-right: none;
+  z-index: 4;
+  transition: background-color 0.4s ease-in-out;
+}
+
+.arrow {
+  margin-top: 30px;
+  margin-left: 15px;
+  height: 17px;
+  width: 17px;
+  border-right: 3px solid black;
+  border-top: 3px solid black;
+  transform: rotate(-135deg);
+  transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.arrowRotated {
+  transform: rotate(45deg);
+}
+
+/* ---- main two-column container ---- */
+.container {
+  height: 90vh;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+}
+
+.subsection {
+  height: 85%;
+}
+
+.subsectionLeft {
+  width: 70%;
+  padding: 40px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: calc(20rem + 10vw);
+  justify-content: space-between;
+  padding: 40px 0;
+  gap: 15px;
+}
+
+.listObject {
+  position: relative;
+  font-family: var(--font-semibold);
+  font-size: calc(1rem + 1.5vw);
+  margin-top: 20px;
+  margin-left: 20px;
+  border-bottom: 1px solid black;
+  transform: scale(0.7) rotate(25deg);
+  width: 100%;
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    opacity 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.listObjectLoaded {
+  transform: scale(1) rotate(0);
+  opacity: 1;
+}
+
+.listObjectSpan {
+  font-size: 0.5rem;
+  height: 90%;
+  vertical-align: top;
+  font-family: Arial, sans-serif;
+  font-style: italic;
+}
+
+.list li a {
+  position: relative;
+  -webkit-text-stroke: 1px black;
+  color: transparent;
+  text-transform: uppercase;
+  text-align: center;
+  transition: color 0.3s ease-in-out, margin-left 0.3s ease-in-out;
+}
+
+.list li a::before {
+  position: absolute;
+  content: url('/assets/svgs/projects/arrow-before.svg');
+  scale: 0.8;
+  margin-left: -15vw;
+  margin-top: -14px;
+  transition: margin-left 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.linkActive {
+  color: black;
+  margin-left: 7vw;
+}
+
+.linkActive::before {
+  margin-left: -5vw;
+}
+
+.watched::after {
+  visibility: visible;
+  position: absolute;
+  content: 'seen';
+  font-style: italic;
+  font-size: 0.6rem;
+  margin-left: 10px;
+  color: black;
+  text-transform: lowercase;
+  -webkit-text-stroke: none;
+  letter-spacing: 1px;
+  opacity: 0.7;
+  font-family: var(--font-regular);
+}
+
+/* ---- right column: preview + footnotes ---- */
+.subsectionRight {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5vw;
+  margin-top: 5vh;
+}
+
+.preview {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.8s cubic-bezier(0.39, 0.575, 0.565, 1);
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/assets/images/projects/projects-placeholder.png');
+  background-size: 60%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.previewLoaded {
+  opacity: 1;
+}
+
+.previewAnchor {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.projectImage,
+.projectVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  scale: 0.8;
+}
+
+.projectVideo {
+  position: absolute;
+  opacity: 1;
+  transition: opacity 0.6s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.footnotes {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: 20%;
+  align-items: flex-start;
+  font-family: var(--font-regular);
+  padding-left: 7vw;
+  margin-top: -60px;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.footnotesHidden {
+  opacity: 0;
+}
+
+.subtitle {
+  font-family: var(--font-medium);
+  font-size: 1.4rem;
+  width: 100%;
+  text-transform: lowercase;
+}
+
+.technologies {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 15px;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  align-items: center;
+  font-style: italic;
+  padding-top: 10px;
+  z-index: 11;
+}
+
+.decorDot {
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.githubIcon {
+  height: 1.5rem;
+  width: 1.5rem;
+  color: black;
+}

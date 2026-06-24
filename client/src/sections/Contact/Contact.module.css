@@ -1,0 +1,3 @@
+.section {
+  composes: base from '../section.module.css';
+}

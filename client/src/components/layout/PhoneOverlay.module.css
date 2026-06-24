@@ -1,0 +1,24 @@
+/* Hidden on desktop; covers the screen on small viewports. */
+.overlay {
+  display: none;
+}
+
+.title {
+  font-family: var(--font-regular);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    padding: 2rem;
+    background-color: #a4ffde;
+    color: #711ef8;
+  }
+}

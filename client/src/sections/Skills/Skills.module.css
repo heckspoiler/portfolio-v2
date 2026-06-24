@@ -1,0 +1,4 @@
+.section {
+  composes: base from '../section.module.css';
+  color: #faf126;
+}

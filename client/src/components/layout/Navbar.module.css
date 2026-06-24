@@ -1,0 +1,42 @@
+.navbar {
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 5vw;
+  height: 15vh;
+  margin-top: 2vh;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  z-index: 11;
+}
+
+.current {
+  font-family: var(--font-regular);
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-size: 0.7rem;
+  margin-top: 0.2rem;
+  transition: color 0.3s ease-in-out;
+}
+
+.list {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.dot {
+  height: 16px;
+  width: 16px;
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 50%;
+  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
