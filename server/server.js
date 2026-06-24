@@ -1,11 +1,11 @@
 // Express API for the portfolio: Charlybot chatbot (Claude) + contact form (email).
 
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const nodemailer = require("nodemailer");
-const Anthropic = require("@anthropic-ai/sdk");
-const prompt = require("./prompt");
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const nodemailer = require('nodemailer');
+const Anthropic = require('@anthropic-ai/sdk');
+const prompt = require('./prompt');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -19,40 +19,40 @@ app.use(express.json());
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 const transporter = nodemailer.createTransport({
-  service: "outlook",
+  service: 'outlook',
   auth: { user: email, pass: password },
 });
 
 // ----- Chatbot: ask Charlybot a question -----
-app.get("/api/ask", async (req, res) => {
+app.get('/api/ask', async (req, res) => {
   const question = req.query.q;
   if (!question) {
-    return res.status(400).json("Please, write something.");
+    return res.status(400).json('Please, write something.');
   }
 
   try {
     const message = await anthropic.messages.create({
-      model: "claude-haiku-4-5",
+      model: 'claude-haiku-4-5',
       max_tokens: 500,
-      system: prompt, // the "Charlybot" persona (prompt.js)
-      messages: [{ role: "user", content: String(question) }],
+      system: prompt,
+      messages: [{ role: 'user', content: String(question) }],
     });
 
     const answer = message.content
-      .filter((block) => block.type === "text")
+      .filter((block) => block.type === 'text')
       .map((block) => block.text)
-      .join("")
+      .join('')
       .trim();
 
     res.json(answer);
   } catch (error) {
-    console.error("Charlybot error:", error);
-    res.status(500).json("Error processing request");
+    console.error('Charlybot error:', error);
+    res.status(500).json('Error processing request');
   }
 });
 
 // ----- Contact form: send mail (and optional copy to the sender) -----
-app.post("/api/form", async (req, res) => {
+app.post('/api/form', async (req, res) => {
   const mailOptions = {
     from: email,
     to: email,
@@ -106,21 +106,21 @@ ${req.body.email}`,
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.error(error);
-      return res.status(500).json({ message: "Error, email not sent" });
+      return res.status(500).json({ message: 'Error, email not sent' });
     }
-    console.log("Email sent: " + info.response);
+    console.log('Email sent: ' + info.response);
 
     if (req.body.checkbox === true) {
       transporter.sendMail(mailRedirect, (redirectError, redirectInfo) => {
         if (redirectError) {
           console.error(redirectError);
-          return res.status(500).json({ message: "Error, email not sent" });
+          return res.status(500).json({ message: 'Error, email not sent' });
         }
-        console.log("Copy sent: " + redirectInfo.response);
-        res.json({ message: "Success, emails sent!" });
+        console.log('Copy sent: ' + redirectInfo.response);
+        res.json({ message: 'Success, emails sent!' });
       });
     } else {
-      res.json({ message: "Success, email sent!" });
+      res.json({ message: 'Success, email sent!' });
     }
   });
 });
