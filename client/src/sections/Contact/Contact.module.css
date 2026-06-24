@@ -1,3 +1,513 @@
 .section {
   composes: base from '../section.module.css';
 }
+
+.title {
+  font-family: var(--font-semibold);
+  font-size: calc(2rem + 6vw);
+  margin-top: 10px;
+  color: #faf126;
+  margin-left: -10vw;
+  opacity: 0;
+  transition: margin-left 0.5s cubic-bezier(0.165, 0.84, 0.44, 1),
+    opacity 0.2s ease-in-out;
+}
+
+.titleLoaded {
+  margin-left: 1vw;
+  opacity: 1;
+}
+
+.container {
+  height: 82%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainSection {
+  height: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.charlybotContainer,
+.formContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: height 0.8s ease-in-out, width 0.8s ease-in-out;
+  height: calc(20rem + 20vw);
+  z-index: 1;
+}
+
+/* ---- the two reveal buttons ---- */
+.mainButton {
+  height: 70%;
+  width: 35vw;
+  border: 4px solid #faf126;
+  background-color: #f46265;
+  font-family: var(--font-semibold);
+  color: #faf126;
+  font-size: calc(1rem + 4.5vw);
+  text-transform: uppercase;
+  opacity: 0;
+  margin-left: -20%;
+  padding: 20px;
+  text-align: left;
+  transition: color 0.2s ease-in, background-color 0.2s ease-in,
+    box-shadow 0.2s ease, border 0.2s ease,
+    height 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+    width 0.8s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s ease-in-out,
+    margin-left 0.2s ease-in-out;
+}
+
+.buttonResize {
+  height: calc(20rem + 20vw);
+}
+
+.contactVisible {
+  opacity: 1;
+  margin-left: 0;
+  transform: rotate(0deg);
+}
+
+.mainButton:hover {
+  background-color: #faf126;
+  color: #f46265;
+}
+
+.mainButton:active {
+  background-color: #faf126;
+  color: #f46265;
+  box-shadow: inset 3px 3px #f46265;
+  border: 2px solid #faf126;
+}
+
+/* ---- form ---- */
+.form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(150%, 150%);
+  display: flex;
+  flex-direction: column;
+  background-color: #f46265;
+  border: 4px solid #faf126;
+  height: 100%;
+  width: 100%;
+  padding: 30px;
+  opacity: 0;
+  z-index: 1;
+  visibility: hidden;
+  justify-content: space-around;
+  transition: opacity 0.2s cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+
+.form h3 {
+  color: #faf126;
+  font-size: 1.8rem;
+  width: 75%;
+  border-bottom: 2px dotted #faf126;
+}
+
+.formOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vw;
+}
+
+.form input,
+.form textarea,
+.form select {
+  background-color: #f46265;
+  border: 3px solid #faf126;
+  color: #faf126;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  width: 75%;
+  font-size: 0.8rem;
+  transition: border 0.5s ease-in-out;
+}
+
+.form input:focus,
+.form textarea:focus,
+.form select:focus {
+  border: 4px dashed #faf126;
+  outline: none;
+}
+
+.form input::placeholder,
+.form textarea::placeholder {
+  color: #faf126;
+}
+
+.form textarea {
+  width: 90%;
+  height: 8rem;
+}
+
+.checkboxSend {
+  display: flex;
+  justify-content: space-between;
+}
+
+.checkboxSend section {
+  display: flex;
+  width: 10vw;
+  font-family: Arial, sans-serif;
+  font-size: 0.7rem;
+  gap: 2px;
+  align-items: center;
+}
+
+.checkboxSend label {
+  width: 150%;
+  text-align: right;
+  color: #faf126;
+}
+
+.checkboxSend input {
+  height: 12px;
+  width: 12px;
+  display: flex;
+}
+
+.checkboxSend button {
+  background-color: transparent;
+  border: 2px solid #faf126;
+  color: #faf126;
+  font-family: var(--font-regular);
+  font-size: 1rem;
+  padding: 10px 0;
+  width: calc(2.5rem + 4vw);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease-in, background-color 0.2s ease-in;
+}
+
+.checkboxSend button:hover {
+  background-color: #faf126;
+  color: #f46265;
+}
+
+.checkboxSend button:active {
+  background-color: #faf126;
+  color: #f46265;
+  box-shadow: inset 1px 1px #f46265;
+}
+
+.formCross {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  top: 0;
+  left: 0;
+  margin-left: 87%;
+  margin-top: 5%;
+  transition: scale 0.2s ease-in-out;
+}
+
+.formCross:hover {
+  scale: 1.1;
+}
+
+.formCross div {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.formCross div::before,
+.formCross div::after {
+  content: '';
+  height: 100%;
+  width: 5px;
+  position: absolute;
+  background-color: #faf126;
+}
+
+.formCross div::before {
+  rotate: 45deg;
+}
+
+.formCross div::after {
+  rotate: -45deg;
+}
+
+/* ---- chatbot ---- */
+.chatbotContainer {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  border: 4px solid #faf126;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f46265;
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.47, 0, 0.745, 0.715),
+    height 1.5s ease-in-out, width 1.5s ease-in-out;
+  visibility: hidden;
+}
+
+.chatbot {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vw;
+}
+
+.chatbotHeader {
+  margin-top: 2%;
+  height: 13%;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatbotLogo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.chatbotLogo svg {
+  scale: 0.85;
+}
+
+.chatbotLogo h4 {
+  font-family: var(--font-regular);
+  color: #faf126;
+  padding-top: 10px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.chatbotCross {
+  height: 20px;
+  width: 20px;
+  position: relative;
+  background: transparent;
+  border: none;
+  transform-origin: center;
+  transition: scale 0.2s ease-in-out;
+}
+
+.chatbotCross:hover {
+  scale: 1.1;
+}
+
+.chatbotCross::before,
+.chatbotCross::after {
+  height: 100%;
+  width: 5px;
+  background-color: #faf126;
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 50%;
+}
+
+.chatbotCross::before {
+  transform: rotate(45deg);
+}
+
+.chatbotCross::after {
+  transform: rotate(-45deg);
+}
+
+.chatbotMainField {
+  background-color: #faf126;
+  border: 2px solid #faf126;
+  padding: 10px;
+  height: 75%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatbotMessages {
+  height: 65%;
+  width: 100%;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #faf126;
+  padding: 5px 10px;
+  background-color: #f46265;
+  gap: 10px;
+}
+
+.chatbotMessages::-webkit-scrollbar {
+  display: none;
+}
+
+.userMessageContainer {
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.userMessageContainer h5 {
+  font-family: Arial, sans-serif;
+  align-self: flex-end;
+  padding: 1px;
+  color: #faf126;
+}
+
+.userMessage {
+  background-color: #f46265;
+  max-width: calc(10rem + 8vw);
+  padding: 10px;
+  font-size: 0.8rem;
+  text-align: left;
+  font-family: Arial, sans-serif;
+  align-self: flex-end;
+  border: 2px solid #faf126;
+  color: #faf126;
+  line-height: 1.1;
+}
+
+.botMessageContainer {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.botMessageContainer svg {
+  scale: 0.7;
+}
+
+.botMessage {
+  color: #faf126;
+  max-width: calc(10rem + 8vw);
+  padding: 10px;
+  font-size: 0.8rem;
+  text-align: left;
+  font-family: var(--font-regular);
+  align-self: flex-end;
+  border: 2px solid #faf126;
+  background-color: #f46265;
+  line-height: 1.4;
+}
+
+.chatbotInput {
+  height: 35%;
+  background-color: #f46265;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 2px solid #faf126;
+}
+
+.chatbotInputField {
+  height: 90%;
+  width: 100%;
+}
+
+.chatbotInputField textarea {
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  height: 90%;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  color: #faf126;
+  letter-spacing: 1.3px;
+  font-size: 0.9rem;
+  resize: none;
+}
+
+.chatbotInputField textarea::placeholder {
+  color: #faf126;
+  opacity: 0.6;
+  font-size: 0.7rem;
+}
+
+.chatbotInputField textarea:focus {
+  outline: none;
+}
+
+.chatbotSendField {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  align-items: center;
+}
+
+.chatbotSendField p {
+  font-family: Arial, sans-serif;
+  font-size: 0.5rem;
+  color: #faf126;
+}
+
+.chatbotSendButton {
+  background-color: transparent;
+  border: 2px solid #faf126;
+  width: calc(3rem + 1.5vw);
+  padding: 5px;
+  border-radius: 30px;
+  font-size: 0.7rem;
+  margin-left: 15px;
+  margin-bottom: 5px;
+  font-family: var(--font-regular);
+  color: #faf126;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- footer ---- */
+.footer {
+  display: flex;
+  padding-left: 30px;
+  align-items: center;
+}
+
+.footerLink {
+  margin-top: 2vw;
+  opacity: 0;
+  margin-left: -6%;
+  transform: rotate(145deg);
+  transition: opacity 0.4s ease-in-out, margin-left 0.4s ease-in-out,
+    transform 0.4s cubic-bezier(0.215, 0.61, 0.355, 1), scale 0.2s ease-in;
+}
+
+.footerLink:hover {
+  scale: 1.05;
+}
+
+.footerSvg {
+  scale: 0.4;
+  width: 101px;
+  height: 104px;
+}
+
+.footerH3 {
+  font-size: calc(1.2rem + 1.5vw);
+  color: #faf126;
+  padding-left: 14px;
+}
+
+/* Reveal state for both the form and the chatbot panels. Defined last so it
+   overrides the hidden defaults of .form and .chatbotContainer regardless of
+   their source order. */
+.panelVisible {
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  visibility: visible;
+}

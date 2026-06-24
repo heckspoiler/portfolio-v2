@@ -1,4 +1,336 @@
 .section {
   composes: base from '../section.module.css';
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* ---- click-me guidance field (revealed in Phase 4) ---- */
+.clickMeField {
+  height: calc(1rem + 5vw);
+  width: calc(10rem + 18vw);
+  border: 4px solid #faf126;
+  position: absolute;
+  left: calc(11rem + 19vw);
+  top: 8rem;
+  background-color: #711ef8;
+  opacity: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s cubic-bezier(0.455, 0.03, 0.515, 0.955),
+    top 0.8s cubic-bezier(0.2, 0.03, 0.515, 0.955);
+}
+
+.clickMeField p {
+  font-family: var(--font-semibold);
   color: #faf126;
+  font-size: 1.3rem;
+  display: flex;
+  justify-items: flex-start;
+}
+
+.powerText {
+  font-size: 0.4em;
+  margin-top: 10px;
+}
+
+/* ---- decorative dot grid ---- */
+.dotsUpperMid {
+  height: 8vw;
+  width: 10vw;
+  position: absolute;
+  left: calc(4rem + 23vw);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  top: 20px;
+}
+
+.dotUpperMid {
+  height: 1vw;
+  width: 1vw;
+  border-radius: 50%;
+}
+
+.dotUpperMid:nth-of-type(2),
+.dotUpperMid:nth-of-type(3),
+.dotUpperMid:nth-of-type(4),
+.dotUpperMid:nth-of-type(12),
+.dotUpperMid:nth-of-type(13),
+.dotUpperMid:nth-of-type(14),
+.dotUpperMid:nth-of-type(22),
+.dotUpperMid:nth-of-type(23),
+.dotUpperMid:nth-of-type(24) {
+  background-color: #faf126;
+}
+
+/* ---- gameboy ---- */
+.gameboyContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 14.5rem;
+  width: 11rem;
+  margin-left: calc(16rem + 46.5vw);
+  margin-top: 15px;
+  opacity: 0;
+  transform: translateY(-50vh);
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1),
+    opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.gameboyLoaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mostOutter {
+  position: relative;
+  height: 90%;
+  width: 90%;
+  border: 5px solid #faf126;
+  border-radius: 15px;
+  border-bottom-right-radius: 55px;
+}
+
+.displayOutter {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 88%;
+  height: 45%;
+  border: 3px solid #faf126;
+  border-radius: 10px;
+}
+
+.displayInner {
+  position: absolute;
+  top: 11.1%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 78%;
+  height: 38%;
+  border: 3px solid #faf126;
+  border-radius: 10px;
+}
+
+.buttonsAb {
+  gap: 5px;
+  position: absolute;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  top: 58%;
+  left: 65%;
+  transform: rotate(63deg);
+}
+
+.buttonAb {
+  height: 30px;
+  border-radius: 50%;
+  width: 30px;
+  border: 3px solid #faf126;
+  background-color: transparent;
+  box-shadow: 2px 1px rgba(250, 241, 38, 0.5);
+  transition: background-color 0.1s ease-in, box-shadow 0.1s ease-in;
+}
+
+.buttonAb p {
+  transform: rotate(-63deg);
+  font-family: Arial, Helvetica, sans-serif;
+  color: #faf126;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.buttonAb:hover {
+  background-color: rgba(38, 215, 250, 0.3);
+}
+
+.buttonAb:active {
+  box-shadow: inset 3px 2px rgba(54, 18, 112, 0.8);
+  background-color: transparent;
+  border: 1px solid #faf126;
+}
+
+.buttonsStartSelect {
+  position: absolute;
+  width: 40%;
+  height: 20px;
+  display: flex;
+  gap: 2px;
+  justify-content: space-evenly;
+  top: 88%;
+  left: 45%;
+  transform: translateX(-50%);
+  align-items: flex-end;
+}
+
+.buttonStartSelect {
+  height: 55%;
+  width: 45%;
+  border: 3px solid #faf126;
+  border-radius: 30px;
+}
+
+.speakers {
+  position: absolute;
+  height: 40px;
+  width: 30px;
+  top: 81%;
+  left: 81.2%;
+  transform: rotate(-45deg);
+  display: flex;
+  justify-content: space-around;
+}
+
+.speakers div {
+  height: 60%;
+  width: 17%;
+  border: 2px solid #faf126;
+  border-radius: 30px;
+}
+
+.cross {
+  height: 2.2em;
+  width: 2.2em;
+  position: absolute;
+  top: 68%;
+  left: 13%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.crossElement {
+  height: 100%;
+  width: 100%;
+}
+
+.crossElement:nth-of-type(2),
+.crossElement:nth-of-type(4),
+.crossElement:nth-of-type(5),
+.crossElement:nth-of-type(6),
+.crossElement:nth-of-type(8) {
+  background-color: #faf126;
+  opacity: 0.9;
+}
+
+.carloboy {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #faf126;
+  font-style: italic;
+  font-size: 0.7rem;
+  position: absolute;
+  text-transform: uppercase;
+  top: 55%;
+  left: 28.5%;
+  font-weight: bolder;
+  letter-spacing: -1px;
+}
+
+/* ---- title ---- */
+.title {
+  font-family: var(--font-semibold);
+  font-size: calc(2rem + 6vw);
+  margin-top: 10px;
+  color: #faf126;
+  margin-left: -10vw;
+  opacity: 0;
+  transition: margin-left 0.5s cubic-bezier(0.165, 0.84, 0.44, 1),
+    opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.titleLoaded {
+  margin-left: 1vw;
+  opacity: 1;
+}
+
+/* ---- skill bars ---- */
+.containerMain {
+  height: 82%;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  gap: 8vw;
+  pointer-events: none;
+}
+
+.subcontainer {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.skillsPair {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 2vw;
+  transform: translateX(-15%);
+  opacity: 0;
+  transition: transform 0.2s cubic-bezier(0.165, 0.84, 0.44, 1),
+    opacity 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.skillsPairLoaded {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.skillsSvg {
+  scale: 0.6;
+}
+
+.levelContainer {
+  position: relative;
+  width: 1.8vw;
+  height: calc(14rem + 7vw);
+  border: 1px solid #faf126;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tailwind {
+  padding-bottom: 1.6rem;
+}
+
+.subtitle {
+  writing-mode: vertical-rl;
+  text-orientation: sideways;
+  white-space: nowrap;
+  color: #faf126;
+  margin-top: 18vw;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.subtitlesLoaded {
+  opacity: 1;
+}
+
+.programming {
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  white-space: nowrap;
+  transform: rotate(180deg);
+  margin-top: 0;
+  margin-bottom: 18vw;
+}
+
+/* cube styling for the Phase 4 falling-cube animation */
+.cubeTest {
+  height: 20px;
+  width: 20px;
+  background-color: #faf126;
+  position: absolute;
+  transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1),
+    left 2s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+    top 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
