@@ -2,10 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { askCharlybot, sendContactForm } from '../../lib/api';
 import { GithubIcon } from '../../components/ui/GithubIcon';
-import {
-  CharlybotIcon,
-  CharlybotLogo,
-} from '../../components/ui/CharlybotIcon';
+import { CharlybotLogo } from '../../components/ui/CharlybotIcon';
 import { useInView } from '../../hooks/useInView';
 import styles from './Contact.module.css';
 import SendButton from './components/SendButton';
@@ -44,6 +41,7 @@ export function Contact() {
   const [messages, setMessages] = useState<ChatMessage[]>([GREETING]);
   const [input, setInput] = useState('');
   const [sentCount, setSentCount] = useState(0);
+  const [isTyping, setIsTyping] = useState(false);
   const messagesRef = useRef<HTMLElement>(null);
 
   // Form state
@@ -59,7 +57,7 @@ export function Contact() {
   useEffect(() => {
     const el = messagesRef.current;
     if (el) el.scrollTop = el.scrollHeight;
-  }, [messages]);
+  }, [messages, isTyping]);
 
   const openChat = () => {
     setChatBtnLabel('initializing...');
@@ -86,10 +84,13 @@ export function Contact() {
     setMessages((m) => [...m, { role: 'user', text: question }]);
     setInput('');
     setSentCount((c) => c + 1);
+    setIsTyping(true);
     try {
       const reply = await askCharlybot(question);
+      setIsTyping(false);
       setMessages((m) => [...m, { role: 'bot', text: reply }]);
     } catch {
+      setIsTyping(false);
       setMessages((m) => [
         ...m,
         {
@@ -164,6 +165,13 @@ export function Contact() {
                           <p className={styles.userMessage}>{msg.text}</p>
                         </div>
                       ),
+                    )}
+                    {isTyping && (
+                      <div className={styles.botMessageContainer}>
+                        <div className={styles.typingIndicator}>
+                          <CharlybotLogo width={20} height={20} />
+                        </div>
+                      </div>
                     )}
                   </section>
                   <div className={styles.chatbotInput}>
