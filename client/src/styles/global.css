@@ -3,23 +3,35 @@
 
 :root {
   /* ---- color palette ---- */
-  --clr-black: #212121;                   /* body text, borders, strokes */
+  --clr-black: #212121;
+  /* body text, borders, strokes */
   --clr-white: #ffffff;
 
   /* brand / section identity */
-  --clr-yellow: #faf126;                  /* primary accent: Skills, Contact */
-  --clr-yellow-warm: #ffea29;             /* Projects: link bg, section highlight */
-  --clr-coral: #f46265;                   /* Contact section bg + hover states */
-  --clr-purple: #711ef8;                  /* Skills section bg */
-  --clr-mint: #a4ffde;                    /* Landing + About section bg */
-  --clr-mint-bright: #29ffb4;             /* Projects description panel bg */
-  --clr-green: #8efda0;                   /* About: "Carlo" text overlay */
-  --clr-blue-dark: #052837;               /* Eyes iris fill */
+  --clr-yellow: #faf126;
+  /* primary accent: Skills, Contact */
+  --clr-yellow-warm: #ffea29;
+  /* Projects: link bg, section highlight */
+  --clr-coral: #f46265;
+  /* Contact section bg + hover states */
+  --clr-purple: #711ef8;
+  /* Skills section bg */
+  --clr-mint: #a4ffde;
+  /* Landing + About section bg */
+  --clr-mint-bright: #29ffb4;
+  /* Projects description panel bg */
+  --clr-green: #8efda0;
+  /* About: "Carlo" text overlay */
+  --clr-blue-dark: #052837;
+  /* Eyes iris fill */
 
   /* system / UI */
-  --clr-body-bg: #8eb4fd;                 /* body initial bg (transitions per section) */
-  --clr-accent: rgb(66, 218, 135);        /* generic accent (cursor, global use) */
-  --clr-cursor-hover: rgb(136, 136, 220); /* cursor hover ring */
+  --clr-body-bg: #8eb4fd;
+  /* body initial bg (transitions per section) */
+  --clr-accent: rgb(66, 218, 135);
+  /* generic accent (cursor, global use) */
+  --clr-cursor-hover: rgb(136, 136, 220);
+  /* cursor hover ring */
 
   /* ---- typography ---- */
   --font-medium: "Nohemi Medium", Arial, sans-serif;
@@ -80,6 +92,11 @@ h2 {
 }
 
 h3 {
-  font-family: Arial, sans-serif;
+
   font-size: calc(0.6rem + 2vw);
+}
+
+
+p {
+  font-family: var(--font-regular);
 }

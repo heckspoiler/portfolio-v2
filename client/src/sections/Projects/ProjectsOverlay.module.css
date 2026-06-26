@@ -1,0 +1,34 @@
+.overlay {
+    position: absolute;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    background-color: var(--clr-yellow-warm);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s cubic-bezier(0.47, 0, 0.745, 0.715);
+    transform: translateX(100%)
+}
+
+.overlaycontent {
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.overlay h3 {
+    font-family: var(--font-semibold);
+    font-size: 2rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--clr-black);
+    width: fit-content
+}
+
+.overlay p {
+    font-family: var(--font-regular);
+    width: 80%;
+    line-height: 140%;
+}

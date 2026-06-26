@@ -3,6 +3,7 @@ import { PROJECTS, type Project } from '../../data/projects';
 import { GithubIcon } from '../../components/ui/GithubIcon';
 import { useInView } from '../../hooks/useInView';
 import styles from './Projects.module.css';
+import ProjectsOverlay from './ProjectsOverlay';
 
 const PLACEHOLDER = '/assets/images/projects/projects-placeholder.png';
 
@@ -97,6 +98,12 @@ export function Projects() {
         </section>
 
         <section className={`${styles.subsection} ${styles.subsectionRight}`}>
+          {' '}
+          {selected === null && (
+            <div className={styles.placeholder}>
+              <img src={PLACEHOLDER} />
+            </div>
+          )}
           <div
             className={`${styles.preview} ${
               loaded ? styles.previewLoaded : ''
@@ -105,6 +112,8 @@ export function Projects() {
             onMouseEnter={() => selected && setShowVideo(true)}
             onMouseLeave={() => setShowVideo(false)}
           >
+            {' '}
+            <ProjectsOverlay selected={selected} isOverlayVisible={true} />
             <a
               className={styles.previewAnchor}
               href={selected?.link ?? '#projects'}
@@ -134,7 +143,6 @@ export function Projects() {
               )}
             </a>
           </div>
-
           <div
             className={`${styles.footnotes} ${
               fieldInView ? styles.footnotesHidden : ''
