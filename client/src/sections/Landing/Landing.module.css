@@ -1,6 +1,6 @@
 .section {
   composes: base from '../section.module.css';
-  background-color: #ffffff;
+  background-color: var(--clr-white);
   transition: background-color 1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 
@@ -14,15 +14,15 @@
   margin-top: calc(6rem + 10vw);
   margin-left: 10rem;
   width: 50rem;
-  border: 3px solid black;
+  border: 3px solid var(--clr-black);
   padding: 30px;
   transition: border 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
 
 .clickMe h2 {
-  color: black;
+  color: var(--clr-black);
   font-family: var(--font-semibold);
-  text-shadow: 0px 0px 0px white;
+  text-shadow: 0px 0px 0px var(--clr-white);
   font-size: 6rem;
   transition: color 1s cubic-bezier(0.455, 0.03, 0.515, 0.955),
     text-shadow 1s cubic-bezier(0.455, 0.03, 0.515, 0.955),
@@ -32,10 +32,10 @@
 
 .magnetBlock {
   height: calc(0.2rem + 0.8vw);
-  border: 2px solid black;
-  box-shadow: 2px 2px 1px black;
+  border: 2px solid var(--clr-black);
+  box-shadow: 2px 2px 1px var(--clr-black);
   width: 150vw;
-  background-color: #faf126;
+  background-color: var(--clr-yellow);
   position: absolute;
   top: calc(20rem + 20vh);
   left: 100vw;
@@ -48,7 +48,7 @@
   position: absolute;
   left: -64vw;
   top: calc(20rem + 20vh);
-  text-shadow: 2px 2px 1px black;
+  text-shadow: 2px 2px 1px var(--clr-black);
   font-size: 0rem;
   rotate: 24deg;
   height: 4rem;
@@ -72,5 +72,5 @@
 }
 
 .button:hover {
-  background-color: #f46265;
+  background-color: var(--clr-coral);
 }

@@ -1,12 +1,13 @@
 .section {
   composes: base from '../section.module.css';
+  --container-height: calc(18rem + 20vw);
 }
 
 .title {
   font-family: var(--font-semibold);
   font-size: calc(2rem + 6vw);
   margin-top: 10px;
-  color: #faf126;
+  color: var(--clr-yellow);
   margin-left: -10vw;
   opacity: 0;
   transition: margin-left 0.5s cubic-bezier(0.165, 0.84, 0.44, 1),
@@ -38,7 +39,7 @@
   justify-content: center;
   align-items: center;
   transition: height 0.8s ease-in-out, width 0.8s ease-in-out;
-  height: calc(20rem + 20vw);
+  height: var(--container-height);
   z-index: 1;
 }
 
@@ -46,10 +47,10 @@
 .mainButton {
   height: 70%;
   width: 35vw;
-  border: 4px solid #faf126;
+  border: 4px solid var(--clr-yellow);
   background-color: #f46265;
   font-family: var(--font-semibold);
-  color: #faf126;
+  color: var(--clr-yellow);
   font-size: calc(1rem + 4.5vw);
   text-transform: uppercase;
   opacity: 0;
@@ -64,19 +65,20 @@
 }
 
 .buttonResize {
-  height: calc(20rem + 20vw);
+  height: var(--container-height);
+  font-size: calc(1rem + 2.5vw);
 }
 
 .mainButton:hover {
-  background-color: #faf126;
+  background-color: var(--clr-yellow);
   color: #f46265;
 }
 
 .mainButton:active {
-  background-color: #faf126;
+  background-color: var(--clr-yellow);
   color: #f46265;
   box-shadow: inset 3px 3px #f46265;
-  border: 2px solid #faf126;
+  border: 2px solid var(--clr-yellow);
 }
 
 /* ---- form ---- */
@@ -88,7 +90,7 @@
   display: flex;
   flex-direction: column;
   background-color: #f46265;
-  border: 4px solid #faf126;
+  border: 4px solid var(--clr-yellow);
   height: 100%;
   width: 100%;
   padding: 30px;
@@ -100,10 +102,9 @@
 }
 
 .form h3 {
-  color: #faf126;
+  color: var(--clr-yellow);
   font-size: 1.8rem;
-  width: 75%;
-  border-bottom: 2px dotted #faf126;
+  width: fit-content;
 }
 
 .formOptions {
@@ -116,11 +117,11 @@
 .form textarea,
 .form select {
   background-color: #f46265;
-  border: 3px solid #faf126;
-  color: #faf126;
+  border: 1px solid var(--clr-yellow);
+  color: var(--clr-yellow);
   padding: 10px;
   font-family: Arial, sans-serif;
-  width: 75%;
+  width: 80%;
   font-size: 0.8rem;
   transition: border 0.5s ease-in-out;
 }
@@ -128,18 +129,18 @@
 .form input:focus,
 .form textarea:focus,
 .form select:focus {
-  border: 4px dashed #faf126;
+  border: 1px dashed var(--clr-yellow);
   outline: none;
 }
 
 .form input::placeholder,
 .form textarea::placeholder {
-  color: #faf126;
+  color: var(--clr-yellow);
 }
 
 .form textarea {
   width: 90%;
-  height: 8rem;
+  height: 10rem;
 }
 
 .checkboxSend {
@@ -149,17 +150,17 @@
 
 .checkboxSend section {
   display: flex;
-  width: 10vw;
+  width: fit-content;
   font-family: Arial, sans-serif;
   font-size: 0.7rem;
-  gap: 2px;
+  gap: 0.5rem;
   align-items: center;
 }
 
 .checkboxSend label {
   width: 150%;
   text-align: right;
-  color: #faf126;
+  color: var(--clr-yellow);
 }
 
 .checkboxSend input {
@@ -168,28 +169,15 @@
   display: flex;
 }
 
-.checkboxSend button {
-  background-color: transparent;
-  border: 2px solid #faf126;
-  color: #faf126;
-  font-family: var(--font-regular);
-  font-size: 1rem;
-  padding: 10px 0;
-  width: calc(2.5rem + 4vw);
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.2s ease-in, background-color 0.2s ease-in;
-}
+
 
 .checkboxSend button:hover {
-  background-color: #faf126;
+  background-color: var(--clr-yellow);
   color: #f46265;
 }
 
 .checkboxSend button:active {
-  background-color: #faf126;
+  background-color: var(--clr-yellow);
   color: #f46265;
   box-shadow: inset 1px 1px #f46265;
 }
@@ -198,10 +186,8 @@
   position: absolute;
   height: 20px;
   width: 20px;
-  top: 0;
-  left: 0;
-  margin-left: 87%;
-  margin-top: 5%;
+  top: 2rem;
+  right: 1rem;
   transition: scale 0.2s ease-in-out;
 }
 
@@ -221,7 +207,7 @@
   height: 100%;
   width: 5px;
   position: absolute;
-  background-color: #faf126;
+  background-color: var(--clr-yellow);
 }
 
 .formCross div::before {
@@ -238,7 +224,7 @@
   width: 100%;
   position: absolute;
   z-index: 1;
-  border: 4px solid #faf126;
+  border: 4px solid var(--clr-yellow);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -256,12 +242,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2vw;
+  gap: 1vw;
 }
 
 .chatbotHeader {
-  margin-top: 2%;
-  height: 13%;
+  padding-top: 1rem;
+  height: fit-content;
   width: 90%;
   display: flex;
   justify-content: space-between;
@@ -269,18 +255,15 @@
 }
 
 .chatbotLogo {
+  gap: 0.25rem;
   display: flex;
   align-items: center;
-  gap: 5px;
-}
 
-.chatbotLogo svg {
-  scale: 0.85;
 }
 
 .chatbotLogo h4 {
   font-family: var(--font-regular);
-  color: #faf126;
+  color: var(--clr-yellow);
   padding-top: 10px;
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -304,7 +287,7 @@
 .chatbotCross::after {
   height: 100%;
   width: 5px;
-  background-color: #faf126;
+  background-color: var(--clr-yellow);
   position: absolute;
   content: '';
   top: 0;
@@ -320,11 +303,13 @@
 }
 
 .chatbotMainField {
-  background-color: #faf126;
-  border: 2px solid #faf126;
-  padding: 10px;
-  height: 75%;
-  width: 90%;
+  border-top: 1px solid var(--clr-yellow);
+  padding: 0;
+
+  height: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -332,14 +317,14 @@
 }
 
 .chatbotMessages {
-  height: 65%;
+  height: 72%;
+  min-height: 0;
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  border: 2px solid #faf126;
   padding: 5px 10px;
-  background-color: #f46265;
   gap: 10px;
 }
 
@@ -358,19 +343,19 @@
   font-family: Arial, sans-serif;
   align-self: flex-end;
   padding: 1px;
-  color: #faf126;
+  color: var(--clr-yellow);
 }
 
 .userMessage {
-  background-color: #f46265;
+
   max-width: calc(10rem + 8vw);
   padding: 10px;
   font-size: 0.8rem;
   text-align: left;
   font-family: Arial, sans-serif;
   align-self: flex-end;
-  border: 2px solid #faf126;
-  color: #faf126;
+  border: 2px solid var(--clr-yellow);
+  color: var(--clr-yellow);
   line-height: 1.1;
 }
 
@@ -381,31 +366,77 @@
   gap: 2px;
 }
 
-.botMessageContainer svg {
-  scale: 0.7;
-}
+
 
 .botMessage {
-  color: #faf126;
+  color: var(--clr-yellow);
   max-width: calc(10rem + 8vw);
   padding: 10px;
   font-size: 0.8rem;
   text-align: left;
   font-family: var(--font-regular);
   align-self: flex-end;
-  border: 2px solid #faf126;
+  border: 2px solid var(--clr-yellow);
   background-color: #f46265;
   line-height: 1.4;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.botMessage p,
+.botMessage ul,
+.botMessage ol {
+  margin: 0;
+}
+
+.botMessage ul,
+.botMessage ol {
+  padding-left: 1.2em;
+}
+
+.botMessage strong {
+  font-family: var(--font-semibold);
+}
+
+.botMessage code {
+  font-family: monospace;
+  font-size: 0.72rem;
+  background-color: var(--clr-yellow);
+  color: var(--clr-black);
+  padding: 1px 5px;
+}
+
+.botMessage pre {
+  background-color: var(--clr-yellow);
+  padding: 10px 12px;
+  margin: 6px 0;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.botMessage pre code {
+  background-color: transparent;
+  padding: 0;
+  font-size: 0.7rem;
+  color: var(--clr-black);
+  white-space: pre-wrap;
+}
+
+.botMessage a {
+  color: var(--clr-yellow);
+  text-decoration: underline;
 }
 
 .chatbotInput {
-  height: 35%;
+  height: 25%;
   background-color: #f46265;
-  width: 100%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 2px solid #faf126;
+  border: 2px solid var(--clr-yellow);
+  border-bottom: none;
+
 }
 
 .chatbotInputField {
@@ -420,14 +451,14 @@
   height: 90%;
   padding: 10px;
   font-family: Arial, sans-serif;
-  color: #faf126;
+  color: var(--clr-yellow);
   letter-spacing: 1.3px;
   font-size: 0.9rem;
   resize: none;
 }
 
 .chatbotInputField textarea::placeholder {
-  color: #faf126;
+  color: var(--clr-yellow);
   opacity: 0.6;
   font-size: 0.7rem;
 }
@@ -439,31 +470,18 @@
 .chatbotSendField {
   display: flex;
   justify-content: space-between;
-  padding: 5px;
+  padding: 0.5rem 1rem;
   align-items: center;
+
 }
 
 .chatbotSendField p {
   font-family: Arial, sans-serif;
   font-size: 0.5rem;
-  color: #faf126;
+  color: var(--clr-yellow);
 }
 
-.chatbotSendButton {
-  background-color: transparent;
-  border: 2px solid #faf126;
-  width: calc(3rem + 1.5vw);
-  padding: 5px;
-  border-radius: 30px;
-  font-size: 0.7rem;
-  margin-left: 15px;
-  margin-bottom: 5px;
-  font-family: var(--font-regular);
-  color: #faf126;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 
 /* ---- footer ---- */
 .footer {
@@ -490,12 +508,12 @@
   width: 101px;
   height: 104px;
   /* GithubIcon paints with currentColor; the footer marks are yellow. */
-  color: #faf126;
+  color: var(--clr-yellow);
 }
 
 .footerH3 {
   font-size: calc(1.2rem + 1.5vw);
-  color: #faf126;
+  color: var(--clr-yellow);
   padding-left: 14px;
 }
 

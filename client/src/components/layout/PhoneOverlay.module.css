@@ -18,7 +18,7 @@
     inset: 0;
     z-index: 2000;
     padding: 2rem;
-    background-color: #a4ffde;
-    color: #711ef8;
+    background-color: var(--clr-mint);
+    color: var(--clr-purple);
   }
 }

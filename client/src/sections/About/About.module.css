@@ -17,7 +17,7 @@
 
 .outlines {
   font-family: var(--font-semibold);
-  -webkit-text-stroke: 1px black;
+  -webkit-text-stroke: 1px var(--clr-black);
   color: transparent;
 }
 
@@ -38,20 +38,20 @@
 
 .carloGreen {
   font-family: var(--font-semibold);
-  -webkit-text-stroke: 1px black;
-  color: #8efda0;
+  -webkit-text-stroke: 1px var(--clr-black);
+  color: var(--clr-green);
   position: absolute;
   margin-left: 5px;
 }
 
 .belowBlock {
-  border: 1px solid black;
+  border: 1px solid var(--clr-black);
   border-radius: 40px;
   height: 2rem;
   width: calc(25rem + 10vw);
   margin-left: calc(17rem + 5vw);
   margin-top: -2rem;
-  background-color: #a4ffde;
+  background-color: var(--clr-mint);
 }
 
 .arrow {
@@ -67,7 +67,7 @@
 
 .descriptionOutlines {
   color: transparent;
-  -webkit-text-stroke: 1px black;
+  -webkit-text-stroke: 1px var(--clr-black);
 }
 
 .laptop {
@@ -109,11 +109,11 @@
   text-decoration-line: underline;
   text-decoration-style: dotted;
   text-decoration-thickness: 2px;
-  color: black;
+  color: var(--clr-black);
   transition: color 0.2s ease-in-out, text-decoration-style 0.3s ease-in-out;
 }
 
 .emphasize:hover {
-  color: #f46265;
+  color: var(--clr-coral);
   text-decoration-style: dashed;
 }

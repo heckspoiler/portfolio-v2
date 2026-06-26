@@ -16,7 +16,12 @@ app.use(cors());
 app.use(express.json());
 
 // Charlybot runs on Claude Haiku 4.5 — cheap and fast, ideal for a scoped Q&A bot.
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+const anthropic = new Anthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+  defaultHeaders: {
+    'anthropic-beta': 'prompt-caching-2024-07-31',
+  },
+});
 
 const transporter = nodemailer.createTransport({
   service: 'outlook',
@@ -34,7 +39,13 @@ app.get('/api/ask', async (req, res) => {
     const message = await anthropic.messages.create({
       model: 'claude-haiku-4-5',
       max_tokens: 500,
-      system: prompt,
+      system: [
+        {
+          type: 'text',
+          text: prompt, // was: systemPrompt (undefined)
+          cache_control: { type: 'ephemeral' },
+        },
+      ],
       messages: [{ role: 'user', content: String(question) }],
     });
 

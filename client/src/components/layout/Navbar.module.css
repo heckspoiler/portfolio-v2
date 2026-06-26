@@ -36,7 +36,7 @@
   height: 16px;
   width: 16px;
   background-color: transparent;
-  border: 1px solid black;
+  border: 1px solid var(--clr-black);
   border-radius: 50%;
   transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }

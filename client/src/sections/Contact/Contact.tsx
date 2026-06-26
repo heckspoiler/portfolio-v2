@@ -1,45 +1,50 @@
-import { useEffect, useRef, useState } from 'react'
-import { askCharlybot, sendContactForm } from '../../lib/api'
-import { GithubIcon } from '../../components/ui/GithubIcon'
-import { CharlybotIcon, CharlybotLogo } from '../../components/ui/CharlybotIcon'
-import { useInView } from '../../hooks/useInView'
-import styles from './Contact.module.css'
+import { useEffect, useRef, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import { askCharlybot, sendContactForm } from '../../lib/api';
+import { GithubIcon } from '../../components/ui/GithubIcon';
+import {
+  CharlybotIcon,
+  CharlybotLogo,
+} from '../../components/ui/CharlybotIcon';
+import { useInView } from '../../hooks/useInView';
+import styles from './Contact.module.css';
+import SendButton from './components/SendButton';
 
 interface ChatMessage {
-  role: 'bot' | 'user'
-  text: string
+  role: 'bot' | 'user';
+  text: string;
 }
 
 const GREETING: ChatMessage = {
   role: 'bot',
   text: "Hello, I'm Charlybot, nice to meet you! You can ask your questions either in English or German (but you're better of with English probably:)). Have fun!",
-}
+};
 
-const MAX_CHARS = 250
+const MAX_CHARS = 250;
 
 function chatPlaceholder(sent: number): string {
-  if (sent > 30) return "you're still here? that's awesome!"
-  if (sent > 10) return "you seem interested, that's cool!"
-  if (sent > 4) return "there's a lot more to know about me!"
-  if (sent > 0) return 'keep on asking...'
-  return 'want to know more about me? chat with charlybot to find out about me, my hobbies, flaws and the projects that i’ve built'
+  if (sent > 30) return "you're still here? that's awesome!";
+  if (sent > 10) return "you seem interested, that's cool!";
+  if (sent > 4) return "there's a lot more to know about me!";
+  if (sent > 0) return 'keep on asking...';
+  return 'want to know more about me? chat with charlybot to find out about me, my hobbies, flaws and the projects that i’ve built';
 }
 
 export function Contact() {
   // Entrance reveal, triggered when the section scrolls into view.
-  const [sectionRef, loaded] = useInView<HTMLElement>({ threshold: 0.8 })
+  const [sectionRef, loaded] = useInView<HTMLElement>({ threshold: 0.8 });
 
   // Reveal/close state for the two panels (ported from mainButtons.js).
-  const [chatOpen, setChatOpen] = useState(false)
-  const [formOpen, setFormOpen] = useState(false)
-  const [chatBtnLabel, setChatBtnLabel] = useState('find out more about me!')
-  const [formBtnLabel, setFormBtnLabel] = useState('drop me a line!')
+  const [chatOpen, setChatOpen] = useState(false);
+  const [formOpen, setFormOpen] = useState(false);
+  const [chatBtnLabel, setChatBtnLabel] = useState('find out more about me!');
+  const [formBtnLabel, setFormBtnLabel] = useState('drop me a line!');
 
   // Chat state
-  const [messages, setMessages] = useState<ChatMessage[]>([GREETING])
-  const [input, setInput] = useState('')
-  const [sentCount, setSentCount] = useState(0)
-  const messagesRef = useRef<HTMLElement>(null)
+  const [messages, setMessages] = useState<ChatMessage[]>([GREETING]);
+  const [input, setInput] = useState('');
+  const [sentCount, setSentCount] = useState(0);
+  const messagesRef = useRef<HTMLElement>(null);
 
   // Form state
   const [form, setForm] = useState({
@@ -48,64 +53,67 @@ export function Contact() {
     select: '',
     message: '',
     checkbox: false,
-  })
+  });
 
   // Keep the chat scrolled to the latest message.
   useEffect(() => {
-    const el = messagesRef.current
-    if (el) el.scrollTop = el.scrollHeight
-  }, [messages])
+    const el = messagesRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [messages]);
 
   const openChat = () => {
-    setChatBtnLabel('initializing...')
-    setTimeout(() => setChatOpen(true), 2000)
-  }
+    setChatBtnLabel('initializing...');
+    setTimeout(() => setChatOpen(true), 2000);
+  };
   const closeChat = () => {
-    setChatOpen(false)
-    setChatBtnLabel('resetting...')
-    setTimeout(() => setChatBtnLabel('find out more about me!'), 2000)
-  }
+    setChatOpen(false);
+    setChatBtnLabel('resetting...');
+    setTimeout(() => setChatBtnLabel('find out more about me!'), 2000);
+  };
   const openForm = () => {
-    setFormBtnLabel('sharpening the pencil...')
-    setTimeout(() => setFormOpen(true), 2000)
-  }
+    setFormBtnLabel('sharpening the pencil...');
+    setTimeout(() => setFormOpen(true), 2000);
+  };
   const closeForm = () => {
-    setFormOpen(false)
-    setFormBtnLabel('maybe another time!')
-    setTimeout(() => setFormBtnLabel('drop me a line!'), 2000)
-  }
+    setFormOpen(false);
+    setFormBtnLabel('maybe another time!');
+    setTimeout(() => setFormBtnLabel('drop me a line!'), 2000);
+  };
 
   const sendChat = async () => {
-    const question = input.trim()
-    if (!question) return
-    setMessages((m) => [...m, { role: 'user', text: question }])
-    setInput('')
-    setSentCount((c) => c + 1)
+    const question = input.trim();
+    if (!question) return;
+    setMessages((m) => [...m, { role: 'user', text: question }]);
+    setInput('');
+    setSentCount((c) => c + 1);
     try {
-      const reply = await askCharlybot(question)
-      setMessages((m) => [...m, { role: 'bot', text: reply }])
+      const reply = await askCharlybot(question);
+      setMessages((m) => [...m, { role: 'bot', text: reply }]);
     } catch {
       setMessages((m) => [
         ...m,
-        { role: 'bot', text: "I can't reach my brain right now — try again in a moment!" },
-      ])
+        {
+          role: 'bot',
+          text: "I can't reach my brain right now — try again in a moment!",
+        },
+      ]);
     }
-  }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      await sendContactForm(form)
+      await sendContactForm(form);
     } catch {
       /* surfaced once the backend is wired up in Phase 5 */
     }
-    setFormOpen(false)
-    setFormBtnLabel('licking the stamp...')
-    setTimeout(() => setFormBtnLabel('sent!'), 2000)
-    setTimeout(() => setFormBtnLabel('thanks for reaching out!'), 4000)
-  }
+    setFormOpen(false);
+    setFormBtnLabel('licking the stamp...');
+    setTimeout(() => setFormBtnLabel('sent!'), 2000);
+    setTimeout(() => setFormBtnLabel('thanks for reaching out!'), 4000);
+  };
 
-  const revealed = loaded ? styles.contactVisible : ''
+  const revealed = loaded ? styles.contactVisible : '';
 
   return (
     <section
@@ -130,7 +138,7 @@ export function Contact() {
               <section className={styles.chatbot}>
                 <section className={styles.chatbotHeader}>
                   <div className={styles.chatbotLogo}>
-                    <CharlybotLogo />
+                    <CharlybotLogo width={40} height={40} />
                     <h4>Charlybot</h4>
                   </div>
                   <button
@@ -145,8 +153,10 @@ export function Contact() {
                     {messages.map((msg, i) =>
                       msg.role === 'bot' ? (
                         <div key={i} className={styles.botMessageContainer}>
-                          <CharlybotIcon />
-                          <p className={styles.botMessage}>{msg.text}</p>
+                          <CharlybotLogo width={20} height={20} />
+                          <div className={styles.botMessage}>
+                            <ReactMarkdown>{msg.text}</ReactMarkdown>
+                          </div>
                         </div>
                       ) : (
                         <div key={i} className={styles.userMessageContainer}>
@@ -165,8 +175,8 @@ export function Contact() {
                         onChange={(e) => setInput(e.target.value)}
                         onKeyDown={(e) => {
                           if (e.key === 'Enter' && !e.shiftKey) {
-                            e.preventDefault()
-                            sendChat()
+                            e.preventDefault();
+                            sendChat();
                           }
                         }}
                       />
@@ -175,13 +185,7 @@ export function Contact() {
                       <p>
                         {input.length}/{MAX_CHARS}
                       </p>
-                      <button
-                        type="button"
-                        className={styles.chatbotSendButton}
-                        onClick={sendChat}
-                      >
-                        SEND
-                      </button>
+                      <SendButton onClick={sendChat} />
                     </section>
                   </div>
                 </section>
@@ -189,7 +193,9 @@ export function Contact() {
             </section>
             <button
               className={`${styles.mainButton} ${revealed} ${
-                chatBtnLabel !== 'find out more about me!' ? styles.buttonResize : ''
+                chatBtnLabel !== 'find out more about me!'
+                  ? styles.buttonResize
+                  : ''
               }`}
               onClick={openChat}
             >
@@ -246,12 +252,13 @@ export function Contact() {
                   placeholder="type here!"
                   required
                   value={form.message}
-                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  onChange={(e) =>
+                    setForm({ ...form, message: e.target.value })
+                  }
                 />
               </section>
               <section className={styles.checkboxSend}>
                 <section>
-                  <label htmlFor="checkbox">Send me a copy</label>
                   <input
                     type="checkbox"
                     id="checkbox"
@@ -259,9 +266,10 @@ export function Contact() {
                     onChange={(e) =>
                       setForm({ ...form, checkbox: e.target.checked })
                     }
-                  />
+                  />{' '}
+                  <label htmlFor="checkbox">Send me a copy</label>
                 </section>
-                <button type="submit">send</button>
+                <SendButton type="submit" />
               </section>
             </form>
             <button
@@ -308,5 +316,5 @@ export function Contact() {
         </footer>
       </section>
     </section>
-  )
+  );
 }
