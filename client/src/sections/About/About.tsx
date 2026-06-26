@@ -1,12 +1,12 @@
-import { useState } from 'react'
-import { useTextWaterfall } from '../../hooks/useTextWaterfall'
-import styles from './About.module.css'
+import { useState } from 'react';
+import { useTextWaterfall } from '../../hooks/useTextWaterfall';
+import styles from './About.module.css';
 
-const SVG = '/assets/svgs/about'
+const SVG = '/assets/svgs/about';
 
 export function About() {
-  const [laptopVisible, setLaptopVisible] = useState(false)
-  const sectionRef = useTextWaterfall<HTMLElement>(0.2)
+  const [laptopVisible, setLaptopVisible] = useState(false);
+  const sectionRef = useTextWaterfall<HTMLElement>(0.2);
 
   return (
     <section
@@ -39,7 +39,7 @@ export function About() {
           onMouseOver={() => setLaptopVisible(true)}
           onMouseOut={() => setLaptopVisible(false)}
         >
-          junior web developer
+          web developer
         </span>
         <br /> based in Switzerland
       </h3>
@@ -53,9 +53,10 @@ export function About() {
       <div className={styles.design}>
         <img className={styles.wavyLine} src={`${SVG}/curvyline.svg`} alt="" />
         <p className={styles.smallText}>
-          *I also like <span className={styles.emphasize}>designing</span> stuff!
+          *I also like <span className={styles.emphasize}>designing</span>{' '}
+          stuff!
         </p>
       </div>
     </section>
-  )
+  );
 }

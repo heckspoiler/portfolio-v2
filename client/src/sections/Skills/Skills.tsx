@@ -3,11 +3,21 @@ import { useInView } from '../../hooks/useInView';
 import { useSkillCubes } from '../../hooks/useSkillCubes';
 import styles from './Skills.module.css';
 
-const LOGO = '/assets/icons/skills/skills-logos';
+const LOGO = '/assets/images/skills';
 
 // Skill bars. `data-skill-bar` matches the keys in SKILL_LEVELS (cube targets).
-const DESIGN_SKILLS = ['illustrator', 'photoshop', 'indesign', 'figma'];
-const TECH_SKILLS = ['html', 'css', 'tailwind', 'javascript', 'react'];
+const TECH_SKILLS = [
+  'html',
+  'css',
+  'typescript',
+  'react',
+  'nextjs',
+  'threejs',
+  'express',
+  'nodejs',
+  'python',
+  'csharp',
+];
 
 function SkillPair({ id, loaded }: { id: string; loaded: boolean }) {
   return (
@@ -18,7 +28,7 @@ function SkillPair({ id, loaded }: { id: string; loaded: boolean }) {
     >
       <img
         className={styles.skillsSvg}
-        src={`${LOGO}/${id}.svg`}
+        src={`${LOGO}/${id}.png`}
         alt={`image for ${id}`}
       />
       <div className={styles.levelContainer} data-skill-bar={id} />
@@ -44,7 +54,7 @@ export function Skills() {
     if (!loaded || helpStarted.current) return;
     helpStarted.current = true;
     const timers = [
-      setTimeout(() => setHelpVisible(true), 5000),
+      setTimeout(() => setHelpVisible(true), 2000),
       setTimeout(() => setHelpText('I think this could be solved...'), 8000),
       setTimeout(
         () => setHelpText('by clicking A or B on the carlo boy™!'),
@@ -137,12 +147,6 @@ export function Skills() {
       </h2>
 
       <section className={styles.containerMain}>
-        <section className={styles.subcontainer}>
-          {DESIGN_SKILLS.map((id) => (
-            <SkillPair key={id} id={id} loaded={loaded} />
-          ))}
-        </section>
-
         <section className={styles.subcontainer}>
           {TECH_SKILLS.map((id) => (
             <SkillPair key={id} id={id} loaded={loaded} />
