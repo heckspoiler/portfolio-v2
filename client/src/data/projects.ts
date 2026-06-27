@@ -33,6 +33,7 @@ export const PROJECTS: Project[] = [
       'Payload CMS',
       'Neon DB',
       'Tailwind CSS',
+      'Tanstack Query',
       'Shadcn UI',
       'Zustand',
     ],
@@ -115,6 +116,42 @@ export const PROJECTS: Project[] = [
     technologies: ['TS', 'VSCode SDK'],
   },
   {
+    slug: 'CHOP',
+    image:
+      'https://res.cloudinary.com/dd8brfluh/image/upload/v1782598365/chop_vxq2fw.png',
+    video:
+      'https://res.cloudinary.com/dd8brfluh/video/upload/v1782598162/0627_twcdhw.mov',
+    name: 'CHOP',
+    shortDescription: `Browser Extension to analyze Soundcloud Mixes`,
+    longDescription:
+      "Now that you're in outer space, you have plenty of time to kill. I mean, it might take you up to seven years to reach your final destination! If you intend to come back to Earth someday (and we hope you will), you should know that, based on what we've seen in the last decade, technological advancements are unlikely to slow down, especially now with AI in the mix. So you might be better off staying in touch with the latest trends and developments. Need resources for that? We've got you covered here, too. Chewstreet offers basic courses in all things web development and design at a very low price, with payment options available either monthly or annually. Considering recent inflation rates, this could be a real steal in 14 years when you finally touch down on Earth again. This project uses Next.js for server-side content rendering and CSS Tailwind to make it visually appealing. For the backend, we use Supabase, and Stripe handles payments and subscriptions. Since I'm using Stripe's test version, I can't go into production mode, but if you want to invite me for an interview, I can bring my laptop and show you the finished project.",
+    link: 'https://ilonaburfday.vercel.app/',
+    github: 'https://github.com/heckspoiler/chewstreet-1',
+    technologies: [
+      'TS',
+      'Bun',
+      'Next.js',
+      'FastAPI',
+      'ZOD',
+      'Tanstack Query',
+      'FFMPEG',
+    ],
+  },
+  {
+    slug: 'helpme',
+    image:
+      'https://res.cloudinary.com/dd8brfluh/image/upload/v1782506919/helpme_hlnhtq.png',
+    video:
+      'https://res.cloudinary.com/dd8brfluh/video/upload/v1782506906/helpme_obzxxc.mov',
+    name: 'Help me find a present',
+    shortDescription: `Didn't know what to gift my girlfriend`,
+    longDescription:
+      "Now that you're in outer space, you have plenty of time to kill. I mean, it might take you up to seven years to reach your final destination! If you intend to come back to Earth someday (and we hope you will), you should know that, based on what we've seen in the last decade, technological advancements are unlikely to slow down, especially now with AI in the mix. So you might be better off staying in touch with the latest trends and developments. Need resources for that? We've got you covered here, too. Chewstreet offers basic courses in all things web development and design at a very low price, with payment options available either monthly or annually. Considering recent inflation rates, this could be a real steal in 14 years when you finally touch down on Earth again. This project uses Next.js for server-side content rendering and CSS Tailwind to make it visually appealing. For the backend, we use Supabase, and Stripe handles payments and subscriptions. Since I'm using Stripe's test version, I can't go into production mode, but if you want to invite me for an interview, I can bring my laptop and show you the finished project.",
+    link: 'https://ilonaburfday.vercel.app/',
+    github: 'https://github.com/heckspoiler/chewstreet-1',
+    technologies: ['Next.Js', 'TS', 'Zustand'],
+  },
+  {
     slug: 'pielectron',
     image: '/assets/images/projects/testimages/chewstreet.png',
     video: '/assets/images/projects/testvideos/chewstreet.mp4',
@@ -132,19 +169,5 @@ export const PROJECTS: Project[] = [
       'Node',
       'Zustand',
     ],
-  },
-  {
-    slug: 'helpme',
-    image:
-      'https://res.cloudinary.com/dd8brfluh/image/upload/v1782506919/helpme_hlnhtq.png',
-    video:
-      'https://res.cloudinary.com/dd8brfluh/video/upload/v1782506906/helpme_obzxxc.mov',
-    name: 'Help me find a present',
-    shortDescription: `Didn't know what to gift my girlfriend`,
-    longDescription:
-      "Now that you're in outer space, you have plenty of time to kill. I mean, it might take you up to seven years to reach your final destination! If you intend to come back to Earth someday (and we hope you will), you should know that, based on what we've seen in the last decade, technological advancements are unlikely to slow down, especially now with AI in the mix. So you might be better off staying in touch with the latest trends and developments. Need resources for that? We've got you covered here, too. Chewstreet offers basic courses in all things web development and design at a very low price, with payment options available either monthly or annually. Considering recent inflation rates, this could be a real steal in 14 years when you finally touch down on Earth again. This project uses Next.js for server-side content rendering and CSS Tailwind to make it visually appealing. For the backend, we use Supabase, and Stripe handles payments and subscriptions. Since I'm using Stripe's test version, I can't go into production mode, but if you want to invite me for an interview, I can bring my laptop and show you the finished project.",
-    link: 'https://ilonaburfday.vercel.app/',
-    github: 'https://github.com/heckspoiler/chewstreet-1',
-    technologies: ['Next.Js', 'TS', 'Zustand'],
   },
 ];
