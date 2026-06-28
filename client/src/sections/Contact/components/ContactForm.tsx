@@ -42,7 +42,17 @@ export default function ContactForm({ loaded }: Props) {
     setFormOpen(false);
     setFormBtnLabel('licking the stamp...');
     setTimeout(() => setFormBtnLabel('sent!'), 2000);
-    setTimeout(() => setFormBtnLabel('thanks for reaching out!'), 4000);
+    setTimeout(() => {
+      setFormBtnLabel('thanks for reaching out!');
+    }, 4000);
+    setTimeout(() => setFormBtnLabel('drop me a line!'), 6000);
+    setForm({
+      name: '',
+      email: '',
+      select: '',
+      message: '',
+      checkbox: false,
+    });
   };
 
   const revealed = loaded ? styles.contactVisible : '';
