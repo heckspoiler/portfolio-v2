@@ -68,3 +68,5 @@ app.post('/api/form', async (req: Request, res: Response) => {
 if (process.env.NODE_ENV !== 'production') {
   app.listen(3000);
 }
+
+export default app;
