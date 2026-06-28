@@ -4,12 +4,10 @@ import styles from '../Contact.module.css';
 import SendButton from './SendButton';
 
 type Props = {
-  /** Section-level entrance reveal, drives the button fade-in. */
   loaded: boolean;
 };
 
 export default function ContactForm({ loaded }: Props) {
-  // Reveal/close state for the form panel (ported from mainButtons.js).
   const [formOpen, setFormOpen] = useState(false);
   const [formBtnLabel, setFormBtnLabel] = useState('drop me a line!');
 
@@ -36,7 +34,10 @@ export default function ContactForm({ loaded }: Props) {
     try {
       await sendContactForm(form);
     } catch {
-      /* surfaced once the backend is wired up in Phase 5 */
+      // Keep the form open so they can retry, and tell them it failed.
+      setFormBtnLabel('something went wrong — try again!');
+      setTimeout(() => setFormBtnLabel('drop me a line!'), 4000);
+      return;
     }
     setFormOpen(false);
     setFormBtnLabel('licking the stamp...');
@@ -52,7 +53,10 @@ export default function ContactForm({ loaded }: Props) {
         className={`${styles.form} ${formOpen ? styles.panelVisible : ''}`}
         onSubmit={handleSubmit}
       >
-        <div className={`${styles.formCross} contact-cross`} onClick={closeForm}>
+        <div
+          className={`${styles.formCross} contact-cross`}
+          onClick={closeForm}
+        >
           <div />
         </div>
         <h3>Get in touch with me!</h3>
