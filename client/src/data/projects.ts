@@ -129,7 +129,7 @@ export const PROJECTS: Project[] = [
     shortDescription: projectTexts.chop.short,
     longDescription: projectTexts.chop.long,
     link: null,
-    github: 'https://github.com/heckspoiler/chewstreet-1',
+    github: 'https://github.com/heckspoiler/2ez-digging-extension',
     technologies: [
       'TS',
       'Bun',
@@ -151,7 +151,7 @@ export const PROJECTS: Project[] = [
     shortDescription: projectTexts.helpme.short,
     longDescription: projectTexts.helpme.long,
     link: 'https://ilonaburfday.vercel.app/',
-    github: 'https://github.com/heckspoiler/chewstreet-1',
+    github: 'https://github.com/heckspoiler/ilonaburfday',
     technologies: ['Next.Js', 'Vanilla JS', 'Zustand'],
   },
   {
@@ -165,7 +165,7 @@ export const PROJECTS: Project[] = [
     shortDescription: projectTexts.pielectron.short,
     longDescription: projectTexts.pielectron.long,
     link: null,
-    github: 'https://github.com/heckspoiler/chewstreet-1',
+    github: 'https://github.com/heckspoiler/pi-agent-electron',
     technologies: [
       'TS',
       'Electron',

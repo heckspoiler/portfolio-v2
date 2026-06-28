@@ -65,6 +65,6 @@ app.post('/api/form', async (req: Request, res: Response) => {
   }
 });
 
-app.listen(3000, () => {
-  console.log('Listening on http://localhost:3000');
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(3000);
+}
