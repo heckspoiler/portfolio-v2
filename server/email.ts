@@ -1,5 +1,5 @@
 import { Resend } from 'resend';
-import ContactEmail from './emails/ContactEmail';
+import ContactEmail from './emails/ContactEmail.js';
 
 export interface ContactBody {
   name: string;

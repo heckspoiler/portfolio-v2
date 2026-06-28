@@ -2,8 +2,8 @@ import dotenv from 'dotenv';
 import express, { type Request, type Response } from 'express';
 import cors from 'cors';
 import Anthropic from '@anthropic-ai/sdk';
-import prompt from './prompt';
-import { sendContactForm, type ContactBody } from './email';
+import prompt from './prompt.js';
+import { sendContactForm, type ContactBody } from './email.js';
 
 dotenv.config();
 
