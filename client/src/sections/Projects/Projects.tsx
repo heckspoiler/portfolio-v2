@@ -7,8 +7,6 @@ import ProjectsOverlay from './ProjectsOverlay';
 
 const PLACEHOLDER = '/assets/images/projects/projects-placeholder.png';
 
-// Lifecycle labels for the badge shown over each project preview. Kept gentle
-// for in-progress work so it reads as "actively built", not "unfinished".
 const STATUS_LABELS: Record<Project['status'], string> = {
   production: 'In Production',
   development: 'In Development',
@@ -18,9 +16,8 @@ export function Projects() {
   const [selected, setSelected] = useState<Project | null>(null);
   const [watched, setWatched] = useState<Set<string>>(new Set());
   const [showVideo, setShowVideo] = useState(false);
-  const [overlayOpen, setOverlayOpen] = useState(false); // "read more" panel
+  const [overlayOpen, setOverlayOpen] = useState(false);
 
-  // Staggered entrance reveal, triggered when the section scrolls into view.
   const [sectionRef, loaded] = useInView<HTMLElement>({ threshold: 0.5 });
 
   const selectProject = (project: Project) => {

@@ -106,7 +106,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'gahdamn',
-    status: 'production',
+    status: 'development',
     image:
       'https://res.cloudinary.com/dd8brfluh/image/upload/v1782599247/gahdamn_eic9iu.png',
     video:
@@ -114,7 +114,7 @@ export const PROJECTS: Project[] = [
     name: 'Gahdamn',
     shortDescription: projectTexts.gahdamn.short,
     longDescription: projectTexts.gahdamn.long,
-    link: 'https://www.youtube.com/watch?v=8ybW48rKBME',
+    link: null,
     github: 'https://github.com/heckspoiler/chewstreet-1',
     technologies: ['TS', 'VSCode SDK'],
   },
