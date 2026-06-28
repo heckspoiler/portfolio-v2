@@ -1,21 +1,36 @@
 // Express API for the portfolio: Charlybot chatbot (Claude) + contact form (email).
 
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const nodemailer = require('nodemailer');
-const Anthropic = require('@anthropic-ai/sdk');
-const prompt = require('./prompt');
+import dotenv from 'dotenv';
+import express, { type Request, type Response } from 'express';
+import cors from 'cors';
+import nodemailer from 'nodemailer';
+import Anthropic from '@anthropic-ai/sdk';
+import prompt from './prompt';
+
+dotenv.config();
+
+function requireEnv(name: string): string {
+  const value = process.env[name];
+  if (!value) throw new Error(`Missing required environment variable: ${name}`);
+  return value;
+}
+
+interface ContactBody {
+  name: string;
+  email: string;
+  select: string;
+  message: string;
+  checkbox: boolean;
+}
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const email = process.env.MAIL;
-const password = process.env.MAIL_PW;
+const email = requireEnv('MAIL');
+const password = requireEnv('MAIL_PW');
 
 app.use(cors());
 app.use(express.json());
 
-// Charlybot runs on Claude Haiku 4.5 — cheap and fast, ideal for a scoped Q&A bot.
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
   defaultHeaders: {
@@ -28,10 +43,9 @@ const transporter = nodemailer.createTransport({
   auth: { user: email, pass: password },
 });
 
-// ----- Chatbot: ask Charlybot a question -----
-app.get('/api/ask', async (req, res) => {
+app.get('/api/ask', async (req: Request, res: Response) => {
   const question = req.query.q;
-  if (!question) {
+  if (typeof question !== 'string' || !question) {
     return res.status(400).json('Please, write something.');
   }
 
@@ -42,16 +56,15 @@ app.get('/api/ask', async (req, res) => {
       system: [
         {
           type: 'text',
-          text: prompt, // was: systemPrompt (undefined)
+          text: prompt,
           cache_control: { type: 'ephemeral' },
         },
       ],
-      messages: [{ role: 'user', content: String(question) }],
+      messages: [{ role: 'user', content: question }],
     });
 
     const answer = message.content
-      .filter((block) => block.type === 'text')
-      .map((block) => block.text)
+      .map((block) => (block.type === 'text' ? block.text : ''))
       .join('')
       .trim();
 
@@ -63,31 +76,39 @@ app.get('/api/ask', async (req, res) => {
 });
 
 // ----- Contact form: send mail (and optional copy to the sender) -----
-app.post('/api/form', async (req, res) => {
+app.post('/api/form', async (req: Request, res: Response) => {
+  const {
+    name,
+    email: senderEmail,
+    select,
+    message,
+    checkbox,
+  } = req.body as ContactBody;
+
   const mailOptions = {
     from: email,
     to: email,
-    subject: `New message from your portfolio from ${req.body.name}`,
-    text: `Name: ${req.body.name}
-           Email: ${req.body.email}
-           Subject: ${req.body.select}
-           Message: ${req.body.message}
-           Checkbox: ${req.body.checkbox}`,
+    subject: `New message from your portfolio from ${name}`,
+    text: `Name: ${name}
+           Email: ${senderEmail}
+           Subject: ${select}
+           Message: ${message}
+           Checkbox: ${checkbox}`,
   };
 
   const mailRedirect = {
     from: email,
-    to: req.body.email,
+    to: senderEmail,
     subject: `Thank you for reaching out!`,
-    text: `Hello ${req.body.name}, thanks for reaching out!
+    text: `Hello ${name}, thanks for reaching out!
 I've received your email and will get back to you as soon as possible. Enjoy your day!
 Best regards, Carlo
 
 Your message:
-${req.body.message}
+${message}
 
 Your email:
-${req.body.email}`,
+${senderEmail}`,
     html: `
     <html lang="en">
   <head>
@@ -100,16 +121,16 @@ ${req.body.email}`,
     </style>
   </head>
   <body>
-    <h2>Hello ${req.body.name}, thanks for reaching out!</h2>
+    <h2>Hello ${name}, thanks for reaching out!</h2>
     <p>I've received your email and will get back to you as soon as possible. Enjoy your day!</p>
     <p>Best regards, Carlo</p>
     <br />
     <img src="https://i.ibb.co/yBT69K7/carlo-1.png" alt="carlo-1" border="0">
     <br/><br/>
     <h3>Your email:</h3>
-    <p class="text-below">${req.body.email}</p>
+    <p class="text-below">${senderEmail}</p>
     <h3>Your message:</h3>
-    <p class="text-below">${req.body.message}</p>
+    <p class="text-below">${message}</p>
   </body>
 </html>`,
   };
@@ -121,7 +142,7 @@ ${req.body.email}`,
     }
     console.log('Email sent: ' + info.response);
 
-    if (req.body.checkbox === true) {
+    if (checkbox === true) {
       transporter.sendMail(mailRedirect, (redirectError, redirectInfo) => {
         if (redirectError) {
           console.error(redirectError);
