@@ -1,5 +1,8 @@
 import { projectTexts } from './projectTexts';
 
+/** Lifecycle of a project, surfaced as a badge over its preview image. */
+export type ProjectStatus = 'production' | 'development';
+
 export interface Project {
   slug: string;
   image: string;
@@ -10,11 +13,13 @@ export interface Project {
   link: string | null;
   github: string;
   technologies: string[];
+  status: ProjectStatus;
 }
 
 export const PROJECTS: Project[] = [
   {
     slug: 'calvaquiz',
+    status: 'production',
     image:
       'https://res.cloudinary.com/dd8brfluh/image/upload/v1782507513/calvaquiz_duggkd.png',
     video:
@@ -38,6 +43,7 @@ export const PROJECTS: Project[] = [
 
   {
     slug: 'konomi',
+    status: 'production',
     image:
       'https://res.cloudinary.com/dd8brfluh/image/upload/v1782503738/konomi_dvzclm.png',
     video:
@@ -58,10 +64,11 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'ozelot',
+    status: 'production',
     image:
       'https://res.cloudinary.com/dd8brfluh/image/upload/v1782503731/ozelot_pbgrcg.png',
     video:
-      'https://res.cloudinary.com/dd8brfluh/video/upload/v1782504160/ozelot_a0l2ee.mov',
+      'https://res.cloudinary.com/dd8brfluh/video/upload/v1782679858/ozeloit_bkw6oz.mov',
     name: 'Ozelot Studios',
     shortDescription: projectTexts.ozelot.short,
     longDescription: projectTexts.ozelot.long,
@@ -78,6 +85,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'piagent',
+    status: 'development',
     image:
       'https://res.cloudinary.com/dd8brfluh/image/upload/v1782503106/piagent_l1ujaj.png',
     video:
@@ -85,7 +93,7 @@ export const PROJECTS: Project[] = [
     name: 'PI Agent VSX',
     shortDescription: projectTexts.piAgent.short,
     longDescription: projectTexts.piAgent.long,
-    link: 'https://www.youtube.com/watch?v=8ybW48rKBME',
+    link: null,
     github: 'https://github.com/heckspoiler/chewstreet-1',
     technologies: [
       'React',
@@ -98,6 +106,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'gahdamn',
+    status: 'production',
     image:
       'https://res.cloudinary.com/dd8brfluh/image/upload/v1782599247/gahdamn_eic9iu.png',
     video:
@@ -111,6 +120,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'CHOP',
+    status: 'development',
     image:
       'https://res.cloudinary.com/dd8brfluh/image/upload/v1782598365/chop_vxq2fw.png',
     video:
@@ -118,7 +128,7 @@ export const PROJECTS: Project[] = [
     name: 'CHOP',
     shortDescription: projectTexts.chop.short,
     longDescription: projectTexts.chop.long,
-    link: 'https://ilonaburfday.vercel.app/',
+    link: null,
     github: 'https://github.com/heckspoiler/chewstreet-1',
     technologies: [
       'TS',
@@ -132,21 +142,25 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'helpme',
+    status: 'production',
     image:
-      'https://res.cloudinary.com/dd8brfluh/image/upload/v1782506919/helpme_hlnhtq.png',
+      'https://res.cloudinary.com/dd8brfluh/image/upload/v1782681480/ilonaburfday_defsba.png',
     video:
-      'https://res.cloudinary.com/dd8brfluh/video/upload/v1782506906/helpme_obzxxc.mov',
+      'https://res.cloudinary.com/dd8brfluh/video/upload/v1782681466/ilonaburfday_kctp0y.mov',
     name: 'Help me find a present',
     shortDescription: projectTexts.helpme.short,
     longDescription: projectTexts.helpme.long,
     link: 'https://ilonaburfday.vercel.app/',
     github: 'https://github.com/heckspoiler/chewstreet-1',
-    technologies: ['Next.Js', 'TS', 'Zustand'],
+    technologies: ['Next.Js', 'Vanilla JS', 'Zustand'],
   },
   {
     slug: 'pielectron',
-    image: '/assets/images/projects/testimages/chewstreet.png',
-    video: '/assets/images/projects/testvideos/chewstreet.mp4',
+    status: 'development',
+    image:
+      'https://res.cloudinary.com/dd8brfluh/image/upload/v1782679558/imasenrornow_lokz1v.png',
+    video:
+      'https://res.cloudinary.com/dd8brfluh/video/upload/v1782679514/imaseniornow_vzeb7s.mov',
     name: `I'm a senior now`,
     shortDescription: projectTexts.pielectron.short,
     longDescription: projectTexts.pielectron.long,

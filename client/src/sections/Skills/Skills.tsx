@@ -13,10 +13,10 @@ const TECH_SKILLS = [
   'react',
   'nextjs',
   'threejs',
-  'express',
   'nodejs',
+  'express',
+
   'python',
-  'csharp',
 ];
 
 function SkillPair({ id, loaded }: { id: string; loaded: boolean }) {
@@ -55,10 +55,10 @@ export function Skills() {
     helpStarted.current = true;
     const timers = [
       setTimeout(() => setHelpVisible(true), 2000),
-      setTimeout(() => setHelpText('I think this could be solved...'), 8000),
+      setTimeout(() => setHelpText('I think this could be solved...'), 5000),
       setTimeout(
         () => setHelpText('by clicking A or B on the carlo boy™!'),
-        10500,
+        8500,
       ),
     ];
     return () => timers.forEach(clearTimeout);

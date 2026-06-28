@@ -1,5 +1,3 @@
-// Express API for the portfolio: Charlybot chatbot (Claude) + contact form (email).
-
 import dotenv from 'dotenv';
 import express, { type Request, type Response } from 'express';
 import cors from 'cors';
@@ -48,7 +46,7 @@ app.get('/api/ask', async (req: Request, res: Response) => {
 
     res.json(answer);
   } catch (error) {
-    console.error('Charlybot error:', error);
+    console.error('Charliebot error:', error);
     res.status(500).json('Error processing request');
   }
 });

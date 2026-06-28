@@ -5,10 +5,20 @@
   height: 10px;
   width: 10px;
   border-radius: 50%;
+  box-sizing: border-box;
   z-index: 1000;
   pointer-events: none;
   transition: width 0.3s ease-in-out, height 0.3s ease-in-out,
     border-radius 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+/* Filled shapes carry the section color as a fill. The outline shape is
+   deliberately left out so it has no background at all. */
+.default,
+.grow,
+.text,
+.arrow {
+  background-color: var(--cursor-color);
 }
 
 .default {
@@ -27,4 +37,24 @@
   width: 2px;
   height: 22px;
   border-radius: 0;
+}
+
+/* Clickable preview: the dot becomes the project arrow, the section color
+   showing through the SVG mask (the stroke is the alpha channel). */
+.arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 0;
+  -webkit-mask: url('/assets/svgs/projects/arrow-before.svg') no-repeat center /
+    contain;
+  mask: url('/assets/svgs/projects/arrow-before.svg') no-repeat center / contain;
+}
+
+/* Selected preview with no link: hollow ring, border only, no fill. */
+.outline {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid var(--cursor-color);
 }

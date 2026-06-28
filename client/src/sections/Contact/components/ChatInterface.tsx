@@ -12,7 +12,7 @@ interface ChatMessage {
 
 const GREETING: ChatMessage = {
   role: 'bot',
-  text: "Hello, I'm Charlybot, nice to meet you! You can ask your questions either in English or German (but you're better of with English probably:)). Have fun!",
+  text: "Hello, I'm Charliebot, nice to meet you! You can ask your questions either in English or German (but you're better of with English probably:)). Have fun!",
 };
 
 const MAX_CHARS = 250;
@@ -22,7 +22,7 @@ function chatPlaceholder(sent: number): string {
   if (sent > 10) return "you seem interested, that's cool!";
   if (sent > 4) return "there's a lot more to know about me!";
   if (sent > 0) return 'keep on asking...';
-  return 'want to know more about me? chat with charlybot to find out about me, my hobbies, flaws and the projects that i’ve built';
+  return 'want to know more about me? chat with charliebot to find out about me, my hobbies, flaws and the projects that i’ve built';
 }
 
 type Props = {
@@ -94,7 +94,7 @@ export default function ChatInterface({ loaded }: Props) {
           <section className={styles.chatbotHeader}>
             <div className={styles.chatbotLogo}>
               <CharlybotLogo width={40} height={40} />
-              <h4>Charlybot</h4>
+              <h4>Charliebot</h4>
             </div>
             <button
               type="button"

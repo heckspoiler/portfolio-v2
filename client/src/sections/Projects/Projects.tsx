@@ -7,12 +7,18 @@ import ProjectsOverlay from './ProjectsOverlay';
 
 const PLACEHOLDER = '/assets/images/projects/projects-placeholder.png';
 
+// Lifecycle labels for the badge shown over each project preview. Kept gentle
+// for in-progress work so it reads as "actively built", not "unfinished".
+const STATUS_LABELS: Record<Project['status'], string> = {
+  production: 'In Production',
+  development: 'In Development',
+};
+
 export function Projects() {
   const [selected, setSelected] = useState<Project | null>(null);
   const [watched, setWatched] = useState<Set<string>>(new Set());
-  const [fieldVisible, setFieldVisible] = useState(false); // description field opacity
-  const [fieldInView, setFieldInView] = useState(false); // arrow toggles slide-in
   const [showVideo, setShowVideo] = useState(false);
+  const [overlayOpen, setOverlayOpen] = useState(false); // "read more" panel
 
   // Staggered entrance reveal, triggered when the section scrolls into view.
   const [sectionRef, loaded] = useInView<HTMLElement>({ threshold: 0.5 });
@@ -21,7 +27,7 @@ export function Projects() {
     setSelected(project);
     setWatched((prev) => new Set(prev).add(project.slug));
     setShowVideo(false);
-    if (!fieldVisible) setFieldVisible(true);
+    setOverlayOpen(false);
   };
 
   return (
@@ -34,29 +40,6 @@ export function Projects() {
       <h2 className={`${styles.title} ${loaded ? styles.titleLoaded : ''}`}>
         Projects
       </h2>
-
-      <div
-        className={`${styles.descriptionField} ${
-          fieldVisible ? styles.fieldVisible : ''
-        } ${fieldInView ? styles.fieldInView : ''}`}
-      >
-        <div
-          className={styles.arrowContainer}
-          onClick={() => setFieldInView((v) => !v)}
-        >
-          <div
-            className={`${styles.arrow} ${
-              fieldInView ? styles.arrowRotated : ''
-            }`}
-          />
-        </div>
-        <h3>{selected ? selected.name : 'quite empty here...'}</h3>
-        <p>
-          {selected
-            ? selected.longDescription
-            : 'click on a project to get more information'}
-        </p>
-      </div>
 
       <section className={styles.container}>
         <section className={`${styles.subsection} ${styles.subsectionLeft}`}>
@@ -113,12 +96,29 @@ export function Projects() {
             onMouseLeave={() => setShowVideo(false)}
           >
             {' '}
-            <ProjectsOverlay selected={selected} isOverlayVisible={true} />
+            <ProjectsOverlay
+              selected={selected}
+              isOverlayVisible={overlayOpen}
+              onClose={() => setOverlayOpen(false)}
+            />
+            {selected && (
+              <span
+                className={`${styles.statusBadge} ${styles[selected.status]}`}
+              >
+                {STATUS_LABELS[selected.status]}
+              </span>
+            )}
             <a
-              className={styles.previewAnchor}
-              href={selected?.link ?? '#projects'}
-              target={selected ? '_blank' : undefined}
-              rel="noreferrer"
+              className={`${styles.previewAnchor} ${
+                selected?.link
+                  ? 'project-has-link'
+                  : selected
+                    ? 'project-no-link'
+                    : ''
+              }`}
+              href={selected?.link ?? undefined}
+              target={selected?.link ? '_blank' : undefined}
+              rel={selected?.link ? 'noreferrer' : undefined}
             >
               {selected && (
                 <img
@@ -143,12 +143,19 @@ export function Projects() {
               )}
             </a>
           </div>
-          <div
-            className={`${styles.footnotes} ${
-              fieldInView ? styles.footnotesHidden : ''
-            }`}
-          >
-            <h3 className={styles.subtitle}>{selected?.shortDescription}</h3>
+          <div className={styles.footnotes}>
+            <div className={styles.footnotesHeader}>
+              <h3 className={styles.subtitle}>{selected?.shortDescription}</h3>
+              {selected && (
+                <button
+                  type="button"
+                  className={styles.readMore}
+                  onClick={() => setOverlayOpen((open) => !open)}
+                >
+                  {overlayOpen ? 'close' : 'read more'}
+                </button>
+              )}
+            </div>
             {selected && (
               <div className={styles.technologies}>
                 {selected.technologies.map((tech) => (

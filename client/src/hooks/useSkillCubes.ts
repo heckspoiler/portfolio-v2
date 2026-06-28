@@ -10,9 +10,8 @@ export const SKILL_LEVELS: Record<string, number> = {
   express: 4,
   nextjs: 6,
   nodejs: 4,
-  python: 3,
-  threejs: 5,
-  csharp: 2,
+  python: 2,
+  threejs: 4,
 };
 
 const ARRANGE_TRANSITION =

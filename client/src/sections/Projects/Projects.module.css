@@ -18,47 +18,6 @@
   opacity: 1;
 }
 
-/* ---- sliding description field ---- */
-.descriptionField {
-  position: absolute;
-  height: 30rem;
-  width: 25rem;
-  top: 25.9vh;
-  left: 100vw;
-  z-index: 3;
-  border: 1px solid var(--clr-black);
-  background-color: var(--clr-mint-bright);
-  box-shadow: 5px 5px 1px var(--clr-black);
-  padding: 40px;
-  backdrop-filter: blur(10px);
-  opacity: 0;
-  transition: opacity 0.4s ease-in-out, left 0.4s ease-in-out;
-}
-
-.fieldVisible {
-  opacity: 1;
-}
-
-.fieldInView {
-  left: 76vw;
-}
-
-.descriptionField h3 {
-  border-bottom: 1px solid var(--clr-black);
-  text-align: center;
-  width: auto;
-}
-
-.descriptionField p {
-  margin-top: 40px;
-  text-align: center;
-  font-family: Arial, sans-serif;
-  font-size: 0.8rem;
-}
-
-
-
-
 /* ---- main two-column container ---- */
 .container {
   height: 100%;
@@ -235,14 +194,20 @@
   transition: opacity 0.5s ease-in-out;
 }
 
-.footnotesHidden {
-  opacity: 0;
+/* full-width row: project title on the left, "read more" on the right */
+.footnotesHeader {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .subtitle {
   font-family: var(--font-medium);
   font-size: 1.4rem;
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   text-transform: lowercase;
 }
 
@@ -269,4 +234,47 @@
   height: 1.5rem;
   width: 1.5rem;
   color: var(--clr-black);
+}
+
+/* ---- lifecycle badge over the preview image ---- */
+.statusBadge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+  padding: 0.3rem 0.7rem;
+  font-family: var(--font-semibold);
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--clr-black);
+  border: 1px solid var(--clr-black);
+}
+
+.production {
+  background-color: var(--clr-green);
+}
+
+.development {
+  background-color: var(--clr-yellow-warm);
+}
+
+/* ---- "read more" button (flat + border, like the contact form button) ---- */
+.readMore {
+  flex-shrink: 0;
+  padding: 0.3rem 0.85rem;
+  font-family: var(--font-regular);
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--clr-black);
+  background-color: transparent;
+  border: 2px solid var(--clr-black);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.readMore:hover {
+  background-color: var(--clr-black);
+  color: var(--clr-white);
 }

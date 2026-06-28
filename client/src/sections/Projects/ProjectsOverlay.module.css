@@ -1,22 +1,57 @@
 .overlay {
     position: absolute;
-    z-index: 1;
+    z-index: 4;
     height: 100%;
     width: 100%;
     background-color: var(--clr-yellow-warm);
-    padding: 2rem;
+    padding-right: 4rem;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     transition: transform 0.4s cubic-bezier(0.47, 0, 0.745, 0.715);
-    transform: translateX(100%)
+    transform: translateX(100%);
+}
+
+.overlayVisible {
+    transform: translateX(0);
 }
 
 .overlaycontent {
-
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+}
+
+/* close cross, top-right */
+.close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 1.4rem;
+    height: 1.4rem;
+    z-index: 5;
+}
+
+.close::before,
+.close::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--clr-black);
+}
+
+.close::before {
+    transform: rotate(45deg);
+}
+
+.close::after {
+    transform: rotate(-45deg);
 }
 
 .overlay h3 {
@@ -29,6 +64,7 @@
 
 .overlay p {
     font-family: var(--font-regular);
-    width: 80%;
+    width: 100%;
     line-height: 140%;
+    white-space: pre-line;
 }
