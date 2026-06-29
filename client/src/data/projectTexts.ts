@@ -66,8 +66,6 @@ She loved it. At her birthday gathering, a lot of people ended up going through 
 
 "I'm a senior now" is an Electron app built with React and the Pi Agent SDK. The idea is simple: you build your agents, give them roles and skills, chain them together, and let them work. The interface is node-based: agents are drag-and-drop, connected to each other visually, with skills that can be dropped directly onto them. You can see what's running, what's connected, and what each agent is responsible for at a glance. Different models, different capabilities, different positions in the chain.
 
-The part that matters most to me is reusability. Once a workflow is set up and working, it gets stored as a reference, ready to be dropped into any future project without rebuilding from scratch. Set it up once, tweak it, move on.
-
-It's in very early stages, but the core idea is solid and it's where a lot of my personal energy is going right now.`,
+The part that matters most to me is reusability. Once a workflow is set up and working, it gets stored as a reference, ready to be dropped into any future project without rebuilding from scratch. Set it up once, tweak it, move on.`,
   },
 };
