@@ -22,7 +22,7 @@ The site is built with Next.js and Prismic CMS, with Zustand for global state ma
     short: 'Website for Ozelot Studios',
     long: `Ozelot sits at the intersection of aesthetics and music, a creative studio with a distinct point of view. After three years of building client work under the Ozelot name, it was time to put our own fingerprint on the web. I was in the driver's seat for the full rebuild.
 
-My responsibilities covered the entire process: research, design, development with Next.js and Prismic CMS, and ongoing content management. The 3D and R3F work was handled by a team member, but after handover I stepped in to fix bugs and refactor the codebase into a structure that actually scales.
+My responsibilities covered the entire process: research, design, development with Next.js and Prismic CMS, and ongoing content management. The 3D and R3F work was handled by a team member, but after handover I stepped in to fix bugs and refactor the codebase into a structure that scales.
 
 The site has a lot of moving parts: a WebGL canvas, video-heavy pages, and performance constraints that don't forgive much. Finding the right hosting solution for high-quality video without killing load times was one of the more stubborn problems, but we got there. The result is a site that reflects who Ozelot is without compromising on how it runs.`,
   },
