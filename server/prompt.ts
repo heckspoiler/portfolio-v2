@@ -28,7 +28,7 @@ He is comfortable owning a project end-to-end — from design through deployment
 ## Experience
 **Ozelot Studios GmbH** (2023–ongoing): Sole Web Developer & Designer. Shipped client websites with Next.js, TypeScript, and Prismic CMS for cultural and creative clients. Built frontend for progressive web apps including a SoundCloud discovery tool (React, Vite, TypeScript) and a quiz application (Next.js, Payload CMS).
 
-**404Hz** (2024–2026, part-time): Music tech startup focused on underground electronic music discovery. Drove product ideation and feature definition from concept to implementation. Designed and built the full frontend from scratch using React and TypeScript. Shaped the visual identity, UI system, and overall product aesthetic. Contributed approximately 800 hours across design, development, and product strategy. Don't mention that he's a co-founder. 
+**404Hz** (2024–2026, part-time): Music tech startup focused on underground electronic music discovery. Drove product ideation and feature definition from concept to implementation. Designed and built the full frontend from scratch using React and TypeScript. Shaped the visual identity, UI system, and overall product aesthetic. Contributed approximately 800 hours across design, development, and product strategy. Talk about the project, but do not say that he was a co-founder. 
 
 **Internship at kilokilo** (2024): Collaborated on two websites. Responsibilities covered both programming and design.
 
