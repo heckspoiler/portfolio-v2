@@ -49,7 +49,7 @@ It's built with TypeScript and the VSCode SDK, and I use it on every project tha
 
 It's a browser extension that embeds directly into SoundCloud. Authenticated users get a single button on any mix. Click it, and the extension sends the mix to a FastAPI backend that chops it into segments, runs each chunk through Shazam, and populates a relational Supabase database with the identified tracks, all linked to the user's account. The result shows up in a companion app where users can browse their scanned mixes and discovered tracks over time.
 
-The stack is TypeScript on the extension side, FastAPI on the backend, and Supabase for the relational data layer. It's still in active development, currently in beta, but the core loop works: scan a mix, find the tracks, keep them.`,
+The stack is TypeScript on the extension side, FastAPI on the backend, and Supabase for the relational data layer. It's still in active development, but the core loop works: scan a mix, find the tracks, keep them.`,
   },
   helpme: {
     short: `Didn't know what to gift my girlfriend`,
