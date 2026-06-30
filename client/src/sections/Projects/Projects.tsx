@@ -17,6 +17,7 @@ export function Projects() {
   const [watched, setWatched] = useState<Set<string>>(new Set());
   const [showVideo, setShowVideo] = useState(false);
   const [overlayOpen, setOverlayOpen] = useState(false);
+  const [mediaLoaded, setMediaLoaded] = useState(false);
 
   const [sectionRef, loaded] = useInView<HTMLElement>({ threshold: 0.5 });
 
@@ -25,6 +26,7 @@ export function Projects() {
     setWatched((prev) => new Set(prev).add(project.slug));
     setShowVideo(false);
     setOverlayOpen(false);
+    setMediaLoaded(false);
   };
 
   return (
@@ -53,7 +55,7 @@ export function Projects() {
                     style={{ transitionDelay: `${200 + index * 100}ms` }}
                   >
                     <div className={styles.arrow}>
-                      <img src="/assets/svgs/projects/arrow-before.svg" />
+                      <img src="/assets/svgs/projects/arrow-before.svg" alt="" />
                     </div>
                     <a
                       href="#projects"
@@ -81,7 +83,7 @@ export function Projects() {
           {' '}
           {selected === null && (
             <div className={styles.placeholder}>
-              <img src={PLACEHOLDER} />
+              <img src={PLACEHOLDER} alt="" />
             </div>
           )}
           <div
@@ -117,13 +119,22 @@ export function Projects() {
               target={selected?.link ? '_blank' : undefined}
               rel={selected?.link ? 'noreferrer' : undefined}
             >
+              {selected && !mediaLoaded && (
+                <div className={styles.loader} aria-label="Loading project media">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+              )}
               {selected && (
                 <img
                   className={styles.projectImage}
                   src={selected.image}
                   alt={`Image of project ${selected.name}`}
+                  onLoad={() => setMediaLoaded(true)}
                   onError={(e) => {
                     e.currentTarget.src = PLACEHOLDER;
+                    setMediaLoaded(true);
                   }}
                 />
               )}

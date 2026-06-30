@@ -55,6 +55,9 @@ body {
   background-color: var(--clr-body-bg);
   transition: background-color 0.3s ease-in-out;
   color: var(--clr-black);
+  /* smoother type rendering on macOS Safari/Chrome and Firefox */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   /* custom cursor is rendered by the Cursor component */
   cursor: none;
 }
@@ -99,4 +102,30 @@ h3 {
 
 p {
   font-family: var(--font-regular);
+}
+
+/* Visible focus ring for keyboard users. :focus-visible keeps it off for
+   mouse/touch (which see the custom cursor), so this only shows on tab nav. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--clr-black);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Respect the OS "reduce motion" setting. Covers CSS transitions/animations
+   and native smooth scrolling; JS-driven motion (GSAP, Three.js) is handled
+   in those components separately. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

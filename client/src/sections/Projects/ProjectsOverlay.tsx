@@ -29,7 +29,12 @@ export default function ProjectsOverlay({
         isOverlayVisible ? styles.overlayVisible : ''
       }`}
     >
-      <div className={styles.close} onClick={onClose} />
+      <button
+        type="button"
+        className={styles.close}
+        onClick={onClose}
+        aria-label="Close project details"
+      />
       <div className={styles.overlaycontent}>
         <h3>{selected?.name}</h3>
         <p>{selected?.longDescription}</p>

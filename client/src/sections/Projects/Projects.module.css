@@ -130,6 +130,7 @@
 .subsectionRight {
   display: flex;
   flex-direction: column;
+  height: calc(22rem + 26vw);
 }
 
 .preview {
@@ -140,6 +141,7 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
+
 }
 
 .placeholder {
@@ -175,12 +177,67 @@
   height: 100%;
   object-fit: contain;
   scale: 1;
+
 }
 
 .projectVideo {
   position: absolute;
   opacity: 1;
   transition: opacity 0.6s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+/* playful loader: three outline circles leapfrogging — the rear circle hops
+   over the others to the front while they slide forward, on a loop */
+.loader {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  z-index: 3;
+  width: 58px;
+  height: 50px;
+}
+
+.loader span {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--clr-yellow-warm);
+  border: 2px solid var(--clr-black);
+  animation: leapfrog 1.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* stagger the three dots a third of the cycle apart so one always leaps */
+.loader span:nth-child(2) {
+  animation-delay: -0.5s;
+}
+
+.loader span:nth-child(3) {
+  animation-delay: -1s;
+}
+
+@keyframes leapfrog {
+  0% {
+    transform: translate(44px, 0);
+  }
+
+  33% {
+    transform: translate(22px, 0);
+  }
+
+  66% {
+    transform: translate(0, 0);
+  }
+
+  83% {
+    transform: translate(22px, -34px);
+  }
+
+  100% {
+    transform: translate(44px, 0);
+  }
 }
 
 .footnotes {

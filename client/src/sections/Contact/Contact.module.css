@@ -189,6 +189,8 @@
   top: 2rem;
   right: 1rem;
   transition: scale 0.2s ease-in-out;
+  background: transparent;
+  border: none;
 }
 
 .formCross:hover {
@@ -326,6 +328,9 @@
   flex-direction: column;
   padding: 5px 10px;
   gap: 10px;
+  /* hide scrollbar in Firefox/IE (WebKit handled below) */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .chatbotMessages::-webkit-scrollbar {

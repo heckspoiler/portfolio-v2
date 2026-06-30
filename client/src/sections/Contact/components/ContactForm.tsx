@@ -63,17 +63,20 @@ export default function ContactForm({ loaded }: Props) {
         className={`${styles.form} ${formOpen ? styles.panelVisible : ''}`}
         onSubmit={handleSubmit}
       >
-        <div
+        <button
+          type="button"
           className={`${styles.formCross} contact-cross`}
           onClick={closeForm}
+          aria-label="Close form"
         >
           <div />
-        </div>
+        </button>
         <h3>Get in touch with me!</h3>
         <section className={styles.formOptions}>
           <input
             type="text"
             placeholder="name"
+            aria-label="Your name"
             required
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -81,12 +84,14 @@ export default function ContactForm({ loaded }: Props) {
           <input
             type="email"
             placeholder="email"
+            aria-label="Your email address"
             required
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
           />
           <select
             required
+            aria-label="Reason for reaching out"
             value={form.select}
             onChange={(e) => setForm({ ...form, select: e.target.value })}
           >
@@ -104,6 +109,7 @@ export default function ContactForm({ loaded }: Props) {
           </select>
           <textarea
             placeholder="type here!"
+            aria-label="Your message"
             required
             value={form.message}
             onChange={(e) => setForm({ ...form, message: e.target.value })}
