@@ -346,19 +346,6 @@
   color: var(--clr-yellow);
 }
 
-.userMessage {
-
-  max-width: calc(10rem + 8vw);
-  padding: 10px;
-  font-size: 0.8rem;
-  text-align: left;
-  font-family: Arial, sans-serif;
-  align-self: flex-end;
-  border: 2px solid var(--clr-yellow);
-  color: var(--clr-yellow);
-  line-height: 1.1;
-}
-
 .botMessageContainer {
   align-self: flex-start;
   display: flex;
@@ -366,26 +353,14 @@
   gap: 2px;
 }
 
-@keyframes vibrate {
-  0%, 100% { transform: translate(0, 0); }
-  20%       { transform: translate(-2px, 1px); }
-  40%       { transform: translate(2px, -1px); }
-  60%       { transform: translate(-1px, 2px); }
-  80%       { transform: translate(1px, -2px); }
-}
-
-.typingIndicator {
-  animation: vibrate 0.4s linear infinite;
-  display: inline-flex;
-}
 
 
-
+.userMessage,
 .botMessage {
   color: var(--clr-yellow);
   max-width: calc(10rem + 8vw);
   padding: 10px;
-  font-size: 0.8rem;
+  font-size: 1rem;
   text-align: left;
   font-family: var(--font-regular);
   align-self: flex-end;
@@ -395,6 +370,41 @@
   overflow-wrap: break-word;
   word-break: break-word;
 }
+
+
+
+@keyframes vibrate {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  20% {
+    transform: translate(-2px, 1px);
+  }
+
+  40% {
+    transform: translate(2px, -1px);
+  }
+
+  60% {
+    transform: translate(-1px, 2px);
+  }
+
+  80% {
+    transform: translate(1px, -2px);
+  }
+}
+
+.typingIndicator {
+  animation: vibrate 0.4s linear infinite;
+  display: inline-flex;
+}
+
+
+
+
 
 .botMessage p,
 .botMessage ul,
@@ -466,14 +476,15 @@
   font-family: Arial, sans-serif;
   color: var(--clr-yellow);
   letter-spacing: 1.3px;
-  font-size: 0.9rem;
+  font-size: 1rem;
   resize: none;
 }
 
 .chatbotInputField textarea::placeholder {
   color: var(--clr-yellow);
   opacity: 0.6;
-  font-size: 0.7rem;
+  font-size: 1rem;
+
 }
 
 .chatbotInputField textarea:focus {
@@ -490,7 +501,7 @@
 
 .chatbotSendField p {
   font-family: Arial, sans-serif;
-  font-size: 0.5rem;
+  font-size: 0.75rem;
   color: var(--clr-yellow);
 }
 
