@@ -11,8 +11,11 @@ export interface ContactPayload {
 }
 
 /** Ask Charlybot a question; resolves to the assistant's reply text. */
-export async function askCharlybot(question: string): Promise<string> {
-  const res = await fetch(`${BASE}/api/ask?q=${encodeURIComponent(question)}`);
+export async function askCharlybot(
+  question: string,
+  sessionId: string,
+): Promise<string> {
+  const res = await fetch(`${BASE}/api/ask?q=${encodeURIComponent(question)}&sessionId=${sessionId}`);
   if (!res.ok) throw new Error(`ask failed: ${res.status}`);
   return res.json();
 }

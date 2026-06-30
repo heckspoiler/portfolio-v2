@@ -41,6 +41,7 @@ export default function ChatInterface({ loaded }: Props) {
   const [sentCount, setSentCount] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
   const messagesRef = useRef<HTMLElement>(null);
+  const sessionId = useRef<string>(crypto.randomUUID());
 
   // Keep the chat scrolled to the latest message.
   useEffect(() => {
@@ -66,7 +67,7 @@ export default function ChatInterface({ loaded }: Props) {
     setSentCount((c) => c + 1);
     setIsTyping(true);
     try {
-      const reply = await askCharlybot(question);
+      const reply = await askCharlybot(question, sessionId.current);
       setIsTyping(false);
       setMessages((m) => [...m, { role: 'bot', text: reply }]);
     } catch {
