@@ -168,7 +168,7 @@ export const PROJECTS: Project[] = [
     image:
       'https://res.cloudinary.com/dd8brfluh/image/upload/v1782679558/imasenrornow_lokz1v.png',
     video:
-      'https://res.cloudinary.com/dd8brfluh/video/upload/v1782679514/imaseniornow_vzeb7s.mov',
+      'https://res.cloudinary.com/dd8brfluh/video/upload/v1782995102/imaseniornow_qe0mq7.mov',
     name: `I'm a senior now`,
     shortDescription: projectTexts.pielectron.short,
     longDescription: projectTexts.pielectron.long,
