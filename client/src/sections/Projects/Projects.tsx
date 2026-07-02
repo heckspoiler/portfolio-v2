@@ -166,15 +166,20 @@ export function Projects() {
             </div>
             {selected && (
               <div className={styles.technologies}>
-                {selected.technologies.map((tech) => (
+                {selected.technologies.map((tech, i) => (
                   <Fragment key={tech}>
                     <p>{tech}</p>
-                    <div className={styles.decorDot} />
+                    {(i < selected.technologies.length - 1 ||
+                      selected.showGithub) && (
+                      <div className={styles.decorDot} />
+                    )}
                   </Fragment>
                 ))}
-                <a href={selected.github} target="_blank" rel="noreferrer">
-                  <GithubIcon className={styles.githubIcon} />
-                </a>
+                {selected.showGithub && (
+                  <a href={selected.github} target="_blank" rel="noreferrer">
+                    <GithubIcon className={styles.githubIcon} />
+                  </a>
+                )}
               </div>
             )}
           </div>

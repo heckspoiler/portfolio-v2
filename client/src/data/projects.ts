@@ -12,6 +12,7 @@ export interface Project {
   longDescription: string;
   link: string | null;
   github: string;
+  showGithub: boolean;
   technologies: string[];
   status: ProjectStatus;
 }
@@ -28,7 +29,8 @@ export const PROJECTS: Project[] = [
     shortDescription: projectTexts.calvaquiz.short,
     longDescription: projectTexts.calvaquiz.long,
     link: 'https://www.calvaquiz.ch/',
-    github: 'https://github.com/heckspoiler/sinecloud/tree/main/sinecloud',
+    github: 'https://github.com/Ozelot-Ltd/CalvaQuiz',
+    showGithub: true,
     technologies: [
       'TS',
       'Next.js',
@@ -52,7 +54,8 @@ export const PROJECTS: Project[] = [
     shortDescription: projectTexts.konomi.short,
     longDescription: projectTexts.konomi.long,
     link: 'https://www.konomi.ch/',
-    github: 'https://github.com/heckspoiler/chewstreet-1',
+    github: 'https://github.com/heckspoiler/konomi',
+    showGithub: true,
     technologies: [
       'Next.js',
       'Three.js',
@@ -73,7 +76,8 @@ export const PROJECTS: Project[] = [
     shortDescription: projectTexts.ozelot.short,
     longDescription: projectTexts.ozelot.long,
     link: 'https://www.ozelot.ltd/',
-    github: 'https://github.com/heckspoiler/chewstreet-1',
+    github: 'https://github.com/Ozelot-Ltd/ozelot',
+    showGithub: true,
     technologies: [
       'Next.js',
       'Three.js',
@@ -95,6 +99,7 @@ export const PROJECTS: Project[] = [
     longDescription: projectTexts.piAgent.long,
     link: null,
     github: 'https://github.com/heckspoiler/chewstreet-1',
+    showGithub: false,
     technologies: [
       'React',
       'TS',
@@ -116,6 +121,7 @@ export const PROJECTS: Project[] = [
     longDescription: projectTexts.gahdamn.long,
     link: null,
     github: 'https://github.com/heckspoiler/chewstreet-1',
+    showGithub: false,
     technologies: ['TS', 'VSCode SDK'],
   },
   {
@@ -130,6 +136,7 @@ export const PROJECTS: Project[] = [
     longDescription: projectTexts.chop.long,
     link: null,
     github: 'https://github.com/heckspoiler/2ez-digging-extension',
+    showGithub: true,
     technologies: [
       'TS',
       'Bun',
@@ -152,6 +159,7 @@ export const PROJECTS: Project[] = [
     longDescription: projectTexts.helpme.long,
     link: 'https://ilonaburfday.vercel.app/',
     github: 'https://github.com/heckspoiler/ilonaburfday',
+    showGithub: true,
     technologies: ['Next.Js', 'Vanilla JS', 'Zustand'],
   },
   {
@@ -166,6 +174,7 @@ export const PROJECTS: Project[] = [
     longDescription: projectTexts.pielectron.long,
     link: null,
     github: 'https://github.com/heckspoiler/pi-agent-electron',
+    showGithub: true,
     technologies: [
       'TS',
       'Electron',
