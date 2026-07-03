@@ -23,18 +23,18 @@
   height: 100%;
   width: 100%;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 0.7fr 1.2fr;
+  display: flex;
 }
 
 .subsection {
   height: 100%;
-  padding: 4rem 4rem 0 4rem;
+  padding: 2rem 2rem 0 2rem;
 
 }
 
 .subsectionLeft {
-  width: 100%;
+  width: 75%;
+
 
 }
 
@@ -55,7 +55,7 @@
   font-size: calc(1rem + 1.5vw);
 
   border-bottom: 1px solid var(--clr-black);
-  width: 100%;
+  width: 75%;
   overflow: hidden;
 
 }
@@ -130,7 +130,8 @@
 .subsectionRight {
   display: flex;
   flex-direction: column;
-  height: calc(22rem + 26vw);
+  width: 100%;
+  height: auto;
 }
 
 .preview {
