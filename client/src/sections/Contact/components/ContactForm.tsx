@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { sendContactForm } from '../../../lib/api';
+import { sendContactForm, type ContactPayload } from '../../../lib/api';
 import styles from '../Contact.module.css';
 import SendButton from './SendButton';
 
@@ -7,21 +7,30 @@ type Props = {
   loaded: boolean;
 };
 
+const emptyForm: ContactPayload = {
+  name: '',
+  email: '',
+  select: '',
+  message: '',
+  checkbox: false,
+  website: '',
+  startedAt: 0,
+};
+
 export default function ContactForm({ loaded }: Props) {
   const [formOpen, setFormOpen] = useState(false);
   const [formBtnLabel, setFormBtnLabel] = useState('drop me a line!');
 
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    select: '',
-    message: '',
-    checkbox: false,
-  });
+  const [form, setForm] = useState(emptyForm);
 
   const openForm = () => {
     setFormBtnLabel('sharpening the pencil...');
-    setTimeout(() => setFormOpen(true), 2000);
+    setTimeout(() => {
+      // Stamp the moment the form becomes usable; the server rejects
+      // submissions that arrive implausibly fast after this.
+      setForm((f) => ({ ...f, startedAt: Date.now() }));
+      setFormOpen(true);
+    }, 2000);
   };
   const closeForm = () => {
     setFormOpen(false);
@@ -46,13 +55,7 @@ export default function ContactForm({ loaded }: Props) {
       setFormBtnLabel('thanks for reaching out!');
     }, 4000);
     setTimeout(() => setFormBtnLabel('drop me a line!'), 6000);
-    setForm({
-      name: '',
-      email: '',
-      select: '',
-      message: '',
-      checkbox: false,
-    });
+    setForm(emptyForm);
   };
 
   const revealed = loaded ? styles.contactVisible : '';
@@ -115,6 +118,23 @@ export default function ContactForm({ loaded }: Props) {
             onChange={(e) => setForm({ ...form, message: e.target.value })}
           />
         </section>
+        {/*
+          Honeypot: visually hidden and removed from the tab order and the
+          accessibility tree, so only a bot auto-filling every input will
+          ever put something in it. The server silently drops those.
+        */}
+        <div className={styles.honeypot} aria-hidden="true">
+          <label htmlFor="contact-website">Website</label>
+          <input
+            type="text"
+            id="contact-website"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={form.website}
+            onChange={(e) => setForm({ ...form, website: e.target.value })}
+          />
+        </div>
         <section className={styles.checkboxSend}>
           <section>
             <input
@@ -123,7 +143,7 @@ export default function ContactForm({ loaded }: Props) {
               checked={form.checkbox}
               onChange={(e) => setForm({ ...form, checkbox: e.target.checked })}
             />{' '}
-            <label htmlFor="checkbox">Send me a copy</label>
+            <label htmlFor="checkbox">Email me a confirmation</label>
           </section>
           <SendButton type="submit" />
         </section>

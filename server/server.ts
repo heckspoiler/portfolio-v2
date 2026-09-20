@@ -3,7 +3,8 @@ import express, { type Request, type Response } from 'express';
 import cors from 'cors';
 import Anthropic from '@anthropic-ai/sdk';
 import prompt from './prompt.js';
-import { sendContactForm, type ContactBody } from './email.js';
+import { sendContactForm } from './email.js';
+import { parseContactSubmission } from './contact.js';
 import { createClient } from '@supabase/supabase-js';
 import { Database } from './database.types.js';
 
@@ -84,8 +85,19 @@ app.get('/api/ask', async (req: Request, res: Response) => {
 });
 
 app.post('/api/form', async (req: Request, res: Response) => {
+  const parsed = parseContactSubmission(req.body);
+
+  if (parsed.kind === 'spam') {
+    // Pretend it worked so the bot has nothing to learn from the response.
+    console.warn(`Contact form spam dropped (${parsed.reason})`);
+    return res.status(200).json({ data: null });
+  }
+  if (parsed.kind === 'invalid') {
+    return res.status(400).json({ error: parsed.message });
+  }
+
   try {
-    const { data, error } = await sendContactForm(req.body as ContactBody);
+    const { data, error } = await sendContactForm(parsed.body);
     if (error) {
       console.error('Contact form error:', error);
       return res.status(400).json({ error });

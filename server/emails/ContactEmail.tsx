@@ -2,7 +2,6 @@ import type { CSSProperties } from 'react';
 import {
   Body,
   Container,
-  Font,
   Head,
   Heading,
   Hr,
@@ -12,33 +11,30 @@ import {
   Text,
 } from 'react-email';
 
-import { ContactBody } from '../email';
+import type { ContactBody } from '../email';
+import { EmailFonts } from './EmailFonts';
+import {
+  SELECT_LABELS,
+  accentBar,
+  card,
+  clr,
+  footer,
+  headFont,
+  header,
+  heading,
+  hr,
+  lead,
+  main,
+} from './theme';
 
 type ContactEmailProps = {
   body: ContactBody;
 };
 
-const clr = {
-  black: '#212121',
-  white: '#ffffff',
-  yellow: '#faf126',
-  coral: '#f46265',
-  coralTint: '#fdecec',
-  muted: '#8a8a8a',
-  hairline: '#ededed',
-} as const;
-
-const FONT_BASE = 'https://carlothedom.digital/assets/fonts/nohemi';
-const bodyFont = "'Nohemi Regular', Arial, Helvetica, sans-serif";
-const headFont = "'Nohemi Semibold', Arial, Helvetica, sans-serif";
-
-const SELECT_LABELS: Record<string, string> = {
-  joboffer: 'Job offer',
-  interviewoffer: 'Interview invitation',
-  jobrejection: 'Job rejection',
-  workoffer: 'Website project',
-};
-
+/**
+ * Internal notification: the full submission, sent only to the site owner.
+ * The sender never receives this one; they get ConfirmationEmail instead.
+ */
 export function ContactEmail({ body }: ContactEmailProps) {
   const { name, email: senderEmail, select, message, checkbox } = body;
   const topic = SELECT_LABELS[select] ?? select;
@@ -46,26 +42,7 @@ export function ContactEmail({ body }: ContactEmailProps) {
   return (
     <Html lang="en">
       <Head>
-        <Font
-          fontFamily="Nohemi Regular"
-          fallbackFontFamily="Arial"
-          webFont={{
-            url: `${FONT_BASE}/Nohemi-Regular.woff2`,
-            format: 'woff2',
-          }}
-          fontWeight={400}
-          fontStyle="normal"
-        />
-        <Font
-          fontFamily="Nohemi Semibold"
-          fallbackFontFamily="Arial"
-          webFont={{
-            url: `${FONT_BASE}/Nohemi-SemiBold.woff2`,
-            format: 'woff2',
-          }}
-          fontWeight={600}
-          fontStyle="normal"
-        />
+        <EmailFonts />
       </Head>
       <Preview>New message from {name} via carlothedom.digital</Preview>
       <Body style={main}>
@@ -73,10 +50,10 @@ export function ContactEmail({ body }: ContactEmailProps) {
           <Section style={accentBar} />
 
           <Section style={header}>
-            <Heading style={heading}>Thanks for reaching out!</Heading>
+            <Heading style={heading}>New message from {name}</Heading>
             <Text style={lead}>
-              Hi {name}, thanks for your message — here's a copy of what came
-              through the contact form.
+              Someone just reached out through the contact form on
+              carlothedom.digital.
             </Text>
           </Section>
 
@@ -93,16 +70,17 @@ export function ContactEmail({ body }: ContactEmailProps) {
 
           <Section style={messageWrap}>
             <Section style={messageBox}>
-              <Text style={messageLabel}>Your message</Text>
+              <Text style={messageLabel}>Message</Text>
               <Text style={messageText}>{message}</Text>
             </Section>
           </Section>
 
           <Hr style={hr} />
           <Text style={footer}>
+            Reply to this email to answer {name} directly.
             {checkbox
-              ? 'You ticked “Send me a copy”, so this confirmation was sent to you too.'
-              : 'Sent from the contact form at carlothedom.digital'}
+              ? ' They asked for a confirmation, so a generic “message received” email was sent to them.'
+              : ' No confirmation was sent to them.'}
           </Text>
         </Container>
       </Body>
@@ -112,46 +90,7 @@ export function ContactEmail({ body }: ContactEmailProps) {
 
 export default ContactEmail;
 
-/* ---------- styles ---------- */
-
-const main: CSSProperties = {
-  backgroundColor: clr.yellow,
-  fontFamily: bodyFont,
-  padding: '32px 8px',
-  margin: 0,
-};
-
-const card: CSSProperties = {
-  backgroundColor: clr.white,
-  maxWidth: '600px',
-  margin: '0 auto',
-  border: `2px solid ${clr.black}`,
-  overflow: 'hidden',
-};
-
-const accentBar: CSSProperties = {
-  height: '8px',
-  backgroundColor: clr.coral,
-};
-
-const header: CSSProperties = {
-  padding: '32px 32px 8px',
-};
-
-const heading: CSSProperties = {
-  margin: 0,
-  fontFamily: headFont,
-  fontSize: '26px',
-  fontWeight: 600,
-  color: clr.black,
-};
-
-const lead: CSSProperties = {
-  margin: '12px 0 0',
-  fontSize: '15px',
-  lineHeight: 1.6,
-  color: '#555555',
-};
+/* ---------- styles specific to the notification ---------- */
 
 const details: CSSProperties = {
   padding: '8px 32px 0',
@@ -203,16 +142,4 @@ const messageText: CSSProperties = {
   whiteSpace: 'pre-wrap',
   overflowWrap: 'break-word',
   wordBreak: 'break-word',
-};
-
-const hr: CSSProperties = {
-  borderColor: clr.hairline,
-  margin: '0 32px',
-};
-
-const footer: CSSProperties = {
-  padding: '16px 32px 32px',
-  fontSize: '12px',
-  textAlign: 'center',
-  color: clr.muted,
 };

@@ -143,6 +143,19 @@
   height: 10rem;
 }
 
+/* Honeypot wrapper: off-screen and inert, but NOT display:none, since some
+   bots skip fields they can detect as hidden that way. */
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .checkboxSend {
   display: flex;
   justify-content: space-between;

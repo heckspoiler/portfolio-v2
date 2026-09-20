@@ -8,6 +8,10 @@ export interface ContactPayload {
   select: string;
   message: string;
   checkbox: boolean;
+  /** Honeypot. Hidden from humans; the server drops anything that fills it. */
+  website: string;
+  /** When the form was opened (ms since epoch); lets the server reject instant submits. */
+  startedAt: number;
 }
 
 /** Ask Charlybot a question; resolves to the assistant's reply text. */
